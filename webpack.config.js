@@ -1,5 +1,6 @@
 const merge = require('webpack-merge');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const TARGET = process.env.npm_lifecycle_event;
 const path = require('path');
@@ -58,11 +59,24 @@ if (TARGET === 'start' || !TARGET) {
 			port: process.env.PORT
 		},
 		plugins: [
-			new webpack.HotModuleReplacementPlugin()
+			new webpack.HotModuleReplacementPlugin(),
+			new HtmlWebpackPlugin({
+				title: 'WikiLynx',
+    			template: './src/index.html',
+    			inject: 'body'
+			})
 		]
 	});
 }
 
 if (TARGET === 'build') {
-	module.exports = merge(common, {});
+	module.exports = merge(common, {
+		plugins: [
+			new HtmlWebpackPlugin({
+				title: 'Custom template',
+    			template: './src/index.html', // Load a custom template 
+    			inject: 'body' // Inject all scripts into the body )
+			})
+		]
+	});
 }
