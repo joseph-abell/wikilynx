@@ -1,3 +1,10 @@
 import React from 'react';
+import './header.scss';
 
-export default () => <div>This is the header</div>;
+export default () => {
+	return (
+		<div className="header">
+			<div className="logo">Wikilynx</div>
+		</div>
+	)
+};
