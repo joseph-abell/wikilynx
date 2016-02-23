@@ -25000,12 +25000,12 @@
 					state: 'notes'
 				});
 
-				(0, _helpers2.default)(id).then(function (data) {
-					this.setState({
-						firstWiki: data.firstWiki,
-						secondWiki: data.secondWiki
-					});
-				}.bind(this));
+				var data = (0, _helpers2.default)(id);
+
+				this.setState({
+					firstWiki: data.firstWiki,
+					secondWiki: data.secondWiki
+				});
 			}
 		}, {
 			key: 'render',
@@ -25124,7 +25124,6 @@
 
 	function getPages() {
 		(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions|images&rvprop=content&grnlimit=2&uselang=user/', function (err, data) {
-			console.log('Error: ', err);
 			console.log('Data: ', data);
 			return data;
 		});
