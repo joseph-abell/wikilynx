@@ -45,12 +45,12 @@ class Game extends React.Component {
 			state: 'notes'
 		});
 
-		getPages(id).then( function (data) {
-			this.setState({
-				firstWiki: data.firstWiki,
-				secondWiki: data.secondWiki
-			});
-		}.bind(this));
+		var data = getPages(id);
+
+		this.setState({
+			firstWiki: data.firstWiki,
+			secondWiki: data.secondWiki
+		});
 	}
 
 	render () {
