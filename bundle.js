@@ -25123,7 +25123,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	function getPages() {
-		(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=jsonfm&action=query&generator=random&grnnamespace=0&prop=revisions|images&rvprop=content&grnlimit=2&uselang=user/', function (err, data) {
+		(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions|images&rvprop=content&grnlimit=2&uselang=user/', function (err, data) {
 			console.log('Error: ', err);
 			console.log('Data: ', data);
 			return data;
