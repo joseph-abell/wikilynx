@@ -8,8 +8,8 @@ import Game from './Components/Game';
 ReactDOM.render(
 	<Router history={hashHistory}>
 		<Route path="/" component={Main}>
-			<Route path="game/:id" component={Game} />
-			<IndexRoute component={Home} />
+			<Route path="Game/Random" component={Game} />
+			<IndexRoute component={Game} />
 		</Route>
 	</Router>,
 	document.getElementById('app')

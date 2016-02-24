@@ -1,7 +1,6 @@
 import React from 'react';
 
 const Main = ({history, children}) => {
-	console.log(this);
 	return (
 		<div className="main-container">
 			<nav className="navbar navbar-default" role="navigation">

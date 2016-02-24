@@ -1,14 +1,21 @@
 import React from 'react';
 
-const SecondPage = () => {
+const SecondPage = ({secondPage}) => {
+	var revision;
+	if (secondPage.revisions) {
+		revision = secondPage.revisions[0]['*'];
+	}
 	return (
-		<div>Second Page</div>
+		<div>
+			<h2>Last Page</h2>
+			<h3>{secondPage.title}</h3>
+			<p>{revision}</p>
+		</div>
 	);
 };
 
 SecondPage.propTypes = {
-	id: React.PropTypes.string.isRequired,
-	secondPage: React.PropTypes.string.isRequired
+	secondPage: React.PropTypes.object.isRequired
 };
 
 export default SecondPage;

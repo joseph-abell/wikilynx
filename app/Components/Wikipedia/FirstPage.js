@@ -1,14 +1,22 @@
 import React from 'react';
 
-const FirstPage = () => {
+const FirstPage = ({firstPage}) => {
+	var revision;
+	if (firstPage.revisions) {
+		revision = firstPage.revisions[0]['*'];
+	}
+
 	return (
-		<div>First Page</div>
+		<div>
+			<h2>First Page</h2>
+			<h3>{firstPage.title}</h3>
+			<p>{revision}</p>
+		</div>
 	);
 };
 
 FirstPage.propTypes = {
-	id: React.PropTypes.string.isRequired,
-	firstPage: React.PropTypes.string.isRequired
+	firstPage: React.PropTypes.object.isRequired
 };
 
 export default FirstPage;

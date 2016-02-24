@@ -13,44 +13,38 @@ class Game extends React.Component {
 		super (props);
 
 		this.state = {
-			id: "",
-			firstWiki: "",
-			secondWiki: ""
+			firstPage: {},
+			secondPage: {}
 		};
 	}
 	
 	componentDidMount () {
-		this.init(this.props.params.id);
+		this.init();
 	}
 
 	componentWillReceiveProps (nextProps) {
 		base.removeBinding(this.ref);
-		this.init(nextProps.params.id);
+		this.init();
 	}
 
 	componentWilUnmount () {
 		base.removeBinding(this.ref);
 	}
 
-	handleAddResult (newResult) {
-		base.post(this.props.params.id, {
-			data: this.state.notes.concat([newNote])
-		});
-	}
-
-	init (id) {
-		this.ref = base.bindToState(id, {
+	init () {
+		this.ref = base.bindToState('games', {
 			context: this,
 			asArray: true,
 			state: 'notes'
 		});
 
-		var data = getPages(id);
 
-		this.setState({
-			firstWiki: data.firstWiki,
-			secondWiki: data.secondWiki
-		});
+		getPages('games').then( function (data) {
+			this.setState({
+				firstPage: data[0],
+				secondPage: data[1]
+			});
+		}.bind(this));
 	}
 
 	render () {
@@ -61,10 +55,10 @@ class Game extends React.Component {
 				</div>
 				<div className="row">
 					<div className="col-md-6">
-						<FirstWiki id={this.props.params.id} firstWiki={this.state.firstWiki} />
+						<FirstWiki firstPage={this.state.firstPage} />
 					</div>
 					<div className="col-md-6">
-						<SecondWiki id={this.props.params.id} secondWiki={this.state.secondWiki} />
+						<SecondWiki secondPage={this.state.secondPage} />
 					</div>
 				</div>
 			</div>

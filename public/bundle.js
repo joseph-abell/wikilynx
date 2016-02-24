@@ -76,8 +76,8 @@
 		_react2.default.createElement(
 			_reactRouter.Route,
 			{ path: '/', component: _Main2.default },
-			_react2.default.createElement(_reactRouter.Route, { path: 'game/:id', component: _Game2.default }),
-			_react2.default.createElement(_reactRouter.IndexRoute, { component: _Home2.default })
+			_react2.default.createElement(_reactRouter.Route, { path: 'Game/Random', component: _Game2.default }),
+			_react2.default.createElement(_reactRouter.IndexRoute, { component: _Game2.default })
 		)
 	), document.getElementById('app'));
 
@@ -24852,7 +24852,6 @@
 		var history = _ref.history;
 		var children = _ref.children;
 
-		console.log(undefined);
 		return _react2.default.createElement(
 			"div",
 			{ className: "main-container" },
@@ -24892,7 +24891,6 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Home = function Home() {
-		console.log(undefined);
 		return _react2.default.createElement(
 			"h2",
 			{ className: "text-center" },
@@ -24961,9 +24959,8 @@
 			var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Game).call(this, props));
 
 			_this.state = {
-				id: "",
-				firstWiki: "",
-				secondWiki: ""
+				firstPage: {},
+				secondPage: {}
 			};
 			return _this;
 		}
@@ -24971,13 +24968,13 @@
 		_createClass(Game, [{
 			key: 'componentDidMount',
 			value: function componentDidMount() {
-				this.init(this.props.params.id);
+				this.init();
 			}
 		}, {
 			key: 'componentWillReceiveProps',
 			value: function componentWillReceiveProps(nextProps) {
 				base.removeBinding(this.ref);
-				this.init(nextProps.params.id);
+				this.init();
 			}
 		}, {
 			key: 'componentWilUnmount',
@@ -24985,27 +24982,20 @@
 				base.removeBinding(this.ref);
 			}
 		}, {
-			key: 'handleAddResult',
-			value: function handleAddResult(newResult) {
-				base.post(this.props.params.id, {
-					data: this.state.notes.concat([newNote])
-				});
-			}
-		}, {
 			key: 'init',
-			value: function init(id) {
-				this.ref = base.bindToState(id, {
+			value: function init() {
+				this.ref = base.bindToState('games', {
 					context: this,
 					asArray: true,
 					state: 'notes'
 				});
 
-				var data = (0, _helpers2.default)(id);
-
-				this.setState({
-					firstWiki: data.firstWiki,
-					secondWiki: data.secondWiki
-				});
+				(0, _helpers2.default)('games').then(function (data) {
+					this.setState({
+						firstPage: data[0],
+						secondPage: data[1]
+					});
+				}.bind(this));
 			}
 		}, {
 			key: 'render',
@@ -25024,12 +25014,12 @@
 						_react2.default.createElement(
 							'div',
 							{ className: 'col-md-6' },
-							_react2.default.createElement(_FirstPage2.default, { id: this.props.params.id, firstWiki: this.state.firstWiki })
+							_react2.default.createElement(_FirstPage2.default, { firstPage: this.state.firstPage })
 						),
 						_react2.default.createElement(
 							'div',
 							{ className: 'col-md-6' },
-							_react2.default.createElement(_SecondPage2.default, { id: this.props.params.id, secondWiki: this.state.secondWiki })
+							_react2.default.createElement(_SecondPage2.default, { secondPage: this.state.secondPage })
 						)
 					)
 				);
@@ -25059,17 +25049,37 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var FirstPage = function FirstPage() {
+	var FirstPage = function FirstPage(_ref) {
+		var firstPage = _ref.firstPage;
+
+		var revision;
+		if (firstPage.revisions) {
+			revision = firstPage.revisions[0]['*'];
+		}
+
 		return _react2.default.createElement(
 			'div',
 			null,
-			'First Page'
+			_react2.default.createElement(
+				'h2',
+				null,
+				'First Page'
+			),
+			_react2.default.createElement(
+				'h3',
+				null,
+				firstPage.title
+			),
+			_react2.default.createElement(
+				'p',
+				null,
+				revision
+			)
 		);
 	};
 
 	FirstPage.propTypes = {
-		id: _react2.default.PropTypes.string.isRequired,
-		firstPage: _react2.default.PropTypes.string.isRequired
+		firstPage: _react2.default.PropTypes.object.isRequired
 	};
 
 	exports.default = FirstPage;
@@ -25090,17 +25100,36 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	var SecondPage = function SecondPage() {
+	var SecondPage = function SecondPage(_ref) {
+		var secondPage = _ref.secondPage;
+
+		var revision;
+		if (secondPage.revisions) {
+			revision = secondPage.revisions[0]['*'];
+		}
 		return _react2.default.createElement(
 			'div',
 			null,
-			'Second Page'
+			_react2.default.createElement(
+				'h2',
+				null,
+				'Last Page'
+			),
+			_react2.default.createElement(
+				'h3',
+				null,
+				secondPage.title
+			),
+			_react2.default.createElement(
+				'p',
+				null,
+				revision
+			)
 		);
 	};
 
 	SecondPage.propTypes = {
-		id: _react2.default.PropTypes.string.isRequired,
-		secondPage: _react2.default.PropTypes.string.isRequired
+		secondPage: _react2.default.PropTypes.object.isRequired
 	};
 
 	exports.default = SecondPage;
@@ -25122,10 +25151,22 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function getPage() {
+		return new Promise(function (resolve, reject) {
+			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions|images&rvprop=content&grnlimit=1&uselang=user/', function (err, data) {
+				if (err) {
+					reject(Error(err));
+				}
+				resolve(data);
+			});
+		});
+	}
+
 	function getPages() {
-		(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions|images&rvprop=content&grnlimit=2&uselang=user/', function (err, data) {
-			console.log('Data: ', data);
-			return data;
+		return Promise.all([getPage(), getPage()]).then(function (arr) {
+			var page0Key = Object.keys(arr[0].query.pages);
+			var page1Key = Object.keys(arr[1].query.pages);
+			return [arr[0].query.pages[page0Key], arr[1].query.pages[page1Key]];
 		});
 	}
 
