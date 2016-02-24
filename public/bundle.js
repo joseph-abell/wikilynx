@@ -24894,7 +24894,7 @@
 		return _react2.default.createElement(
 			"h2",
 			{ className: "text-center" },
-			"Get from One Wikipedia Page to Another in the shortest amount of steps!"
+			"Get from One Wikipedia Page to Another in the fewest steps!"
 		);
 	};
 

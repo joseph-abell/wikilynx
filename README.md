@@ -4,13 +4,10 @@ Wikilynx will be a game abount making the shortest amount of connections from wi
 The app uses webpack for the build process. 
 
 ## Installation
-- download the app, and unzip it somewhere nice.
-- in your terminal, or command prompt if you are on windows, change directories to this folder.
-- type `npm install` (without quotations)
+- Download the app, and unzip it somewhere nice.
+- In your terminal, or command prompt if you are on windows, change directories to this folder.
+- Type `npm install` (without quotations)
 
-## Run Develop Mode
-- in your terminal, run `npm start`
-- go to localhost:8080 in your bowser of choice.
-
-## Build for Production
-- In your terminal, run `npm build`. Your packaged app will live in the build directory.
+## Run
+- In order to make sure that everything is running smoothly, go to the root directory of the app, and run `webpack` in your console of choice.
+- open up the index.html file that you should now find in the public directory.
