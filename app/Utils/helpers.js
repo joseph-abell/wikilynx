@@ -17,7 +17,11 @@ function parseText(data) {
 			if (err) {
 				reject(Error(err));
 			}
-			resolve(newData.parse.text['*']);
+
+			var content = newData.parse.text['*'];
+			content = content.replace(/href="\/wiki\//g, 'data-url="');
+			console.log(content);
+			resolve(content);
 		});
 	});
 }
