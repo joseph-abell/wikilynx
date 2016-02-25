@@ -53,12 +53,16 @@ class Game extends React.Component {
 				<div className="row">
 					<Home />
 				</div>
-				<div className="row">
-					<div className="col-md-6">
-						<FirstWiki firstPage={this.state.firstPage} />
+				<div className="container">
+					<div className="row">
+						<div className="col-md-12">
+							<FirstWiki firstPage={this.state.firstPage} />
+						</div>
 					</div>
-					<div className="col-md-6">
-						<SecondWiki secondPage={this.state.secondPage} />
+					<div className="row">
+						<div className="col-md-12">
+							<SecondWiki secondPage={this.state.secondPage} style={{maxHeight: '50%'}} />
+						</div>
 					</div>
 				</div>
 			</div>

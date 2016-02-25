@@ -6,7 +6,7 @@ const SecondPage = ({secondPage}) => {
 	}
 
 	return (
-		<div className="second-page">
+		<div className="second-page" style={{height: 300, overflow: 'auto',border: '1px solid #e7e7e7', marginBottom: 20, padding: 20, background: '#f8f8f8'}}>
 			<h2>{secondPage.title}</h2>
 			<div dangerouslySetInnerHTML={createMarkup()}></div>
 		</div>
