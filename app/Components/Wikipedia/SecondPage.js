@@ -1,11 +1,14 @@
 import React from 'react';
 
 const SecondPage = ({secondPage}) => {
+	function createMarkup () {
+		return {__html: secondPage.content };
+	}
+
 	return (
 		<div>
-			<h2>Last Page</h2>
-			<h3>{secondPage.title}</h3>
-			<p>{secondPage.content}</p>
+			<h2>{secondPage.title}</h2>
+			<p dangerouslySetInnerHTML={createMarkup()}></p>
 		</div>
 	);
 };

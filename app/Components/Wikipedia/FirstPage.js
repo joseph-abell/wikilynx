@@ -1,11 +1,14 @@
 import React from 'react';
 
 const FirstPage = ({firstPage}) => {
+	function createMarkup () {
+		return {__html: firstPage.content };
+	}
+
 	return (
 		<div>
-			<h2>First Page</h2>
-			<h3>{firstPage.title}</h3>
-			<p>{firstPage.content}</p>
+			<h2>{firstPage.title}</h2>
+			<p dangerouslySetInnerHTML={createMarkup()}></p>
 		</div>
 	);
 };

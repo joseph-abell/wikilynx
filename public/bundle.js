@@ -24860,8 +24860,8 @@
 				{ className: "navbar navbar-default", role: "navigation" },
 				_react2.default.createElement(
 					"div",
-					{ className: "col-sm-7 col-sm-offset-2", style: { marginTop: 15 } },
-					"Menu"
+					{ className: "container", style: { marginTop: 15 } },
+					"Get from One Wikipedia Page to Another in the fewest steps!"
 				)
 			),
 			_react2.default.createElement(
@@ -24878,7 +24878,7 @@
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -24891,11 +24891,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Home = function Home() {
-		return _react2.default.createElement(
-			"h2",
-			{ className: "text-center" },
-			"Get from One Wikipedia Page to Another in the fewest steps!"
-		);
+		return _react2.default.createElement('div', null);
 	};
 
 	exports.default = Home;
@@ -25052,24 +25048,19 @@
 	var FirstPage = function FirstPage(_ref) {
 		var firstPage = _ref.firstPage;
 
+		function createMarkup() {
+			return { __html: firstPage.content };
+		}
+
 		return _react2.default.createElement(
 			'div',
 			null,
 			_react2.default.createElement(
 				'h2',
 				null,
-				'First Page'
-			),
-			_react2.default.createElement(
-				'h3',
-				null,
 				firstPage.title
 			),
-			_react2.default.createElement(
-				'p',
-				null,
-				firstPage.content
-			)
+			_react2.default.createElement('p', { dangerouslySetInnerHTML: createMarkup() })
 		);
 	};
 
@@ -25098,24 +25089,19 @@
 	var SecondPage = function SecondPage(_ref) {
 		var secondPage = _ref.secondPage;
 
+		function createMarkup() {
+			return { __html: secondPage.content };
+		}
+
 		return _react2.default.createElement(
 			'div',
 			null,
 			_react2.default.createElement(
 				'h2',
 				null,
-				'Last Page'
-			),
-			_react2.default.createElement(
-				'h3',
-				null,
 				secondPage.title
 			),
-			_react2.default.createElement(
-				'p',
-				null,
-				secondPage.content
-			)
+			_react2.default.createElement('p', { dangerouslySetInnerHTML: createMarkup() })
 		);
 	};
 
@@ -25144,7 +25130,7 @@
 
 	function getPage() {
 		return new Promise(function (resolve, reject) {
-			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&rvprop=content&grnlimit=1&uselang=user/', function (err, data) {
+			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&grnlimit=1&uselang=user/', function (err, data) {
 				if (err) {
 					reject(Error(err));
 				}
@@ -25155,11 +25141,11 @@
 
 	function parseText(data) {
 		return new Promise(function (resolve, reject) {
-			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=parse&text={data}', function (err, newData) {
+			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + data + '&prop=text', function (err, newData) {
 				if (err) {
 					reject(Error(err));
 				}
-				resolve(newData);
+				resolve(newData.parse.text['*']);
 			});
 		});
 	}
@@ -25168,7 +25154,8 @@
 		return Promise.all([getPage(), getPage()]).then(function (arr) {
 			var page0Key = Object.keys(arr[0].query.pages);
 			var page1Key = Object.keys(arr[1].query.pages);
-			return Promise.all([arr[0].query.pages[page0Key].revisions[0]['*'], arr[1].query.pages[page1Key].revisions[0]['*']]).then(function (parsedArr) {
+
+			return Promise.all([parseText(arr[0].query.pages[page0Key].title), parseText(arr[1].query.pages[page1Key].title)]).then(function (parsedArr) {
 				return [{
 					'title': arr[0].query.pages[page0Key].title,
 					'content': parsedArr[0]

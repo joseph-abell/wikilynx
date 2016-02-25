@@ -4,8 +4,8 @@ const Main = ({history, children}) => {
 	return (
 		<div className="main-container">
 			<nav className="navbar navbar-default" role="navigation">
-				<div className="col-sm-7 col-sm-offset-2" style={{marginTop: 15}}>
-					Menu
+				<div className="container" style={{marginTop: 15}}>
+					Get from One Wikipedia Page to Another in the fewest steps!
 				</div>
 			</nav>
 			<div className="container">
