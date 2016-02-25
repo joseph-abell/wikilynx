@@ -24861,14 +24861,19 @@
 				_react2.default.createElement(
 					"div",
 					{ className: "container", style: { marginTop: 15 } },
-					"Get from One Wikipedia Page to Another in the fewest steps!"
+					_react2.default.createElement(
+						"h1",
+						null,
+						"Wikilynx"
+					),
+					_react2.default.createElement(
+						"span",
+						{ style: { fontSize: 14, paddingBottom: 10, display: 'inline-block' } },
+						"Get from One Wikipedia Page to Another in the fewest steps!"
+					)
 				)
 			),
-			_react2.default.createElement(
-				"div",
-				{ className: "container" },
-				children
-			)
+			children
 		);
 	};
 
@@ -24878,7 +24883,7 @@
 /* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -24891,7 +24896,19 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Home = function Home() {
-		return _react2.default.createElement('div', null);
+		return _react2.default.createElement(
+			"div",
+			{ className: "main-container" },
+			_react2.default.createElement(
+				"nav",
+				{ className: "navbar navbar-default", role: "navigation" },
+				_react2.default.createElement(
+					"div",
+					{ className: "container", style: { marginTop: 15 } },
+					"Breadcrumbs:"
+				)
+			)
+		);
 	};
 
 	exports.default = Home;
@@ -25006,16 +25023,24 @@
 					),
 					_react2.default.createElement(
 						'div',
-						{ className: 'row' },
+						{ className: 'container' },
 						_react2.default.createElement(
 							'div',
-							{ className: 'col-md-6' },
-							_react2.default.createElement(_FirstPage2.default, { firstPage: this.state.firstPage })
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(_FirstPage2.default, { firstPage: this.state.firstPage })
+							)
 						),
 						_react2.default.createElement(
 							'div',
-							{ className: 'col-md-6' },
-							_react2.default.createElement(_SecondPage2.default, { secondPage: this.state.secondPage })
+							{ className: 'row' },
+							_react2.default.createElement(
+								'div',
+								{ className: 'col-md-12' },
+								_react2.default.createElement(_SecondPage2.default, { secondPage: this.state.secondPage, style: { maxHeight: '50%' } })
+							)
 						)
 					)
 				);
@@ -25033,7 +25058,7 @@
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -25053,14 +25078,14 @@
 		}
 
 		return _react2.default.createElement(
-			"div",
-			{ className: "first-page" },
+			'div',
+			{ className: 'first-page', style: { height: 300, overflow: 'auto', border: '1px solid #e7e7e7', marginBottom: 20, padding: 20, background: '#f8f8f8' } },
 			_react2.default.createElement(
-				"h2",
+				'h2',
 				null,
 				firstPage.title
 			),
-			_react2.default.createElement("div", { dangerouslySetInnerHTML: createMarkup() })
+			_react2.default.createElement('div', { dangerouslySetInnerHTML: createMarkup() })
 		);
 	};
 
@@ -25074,7 +25099,7 @@
 /* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -25094,14 +25119,14 @@
 		}
 
 		return _react2.default.createElement(
-			"div",
-			{ className: "second-page" },
+			'div',
+			{ className: 'second-page', style: { height: 300, overflow: 'auto', border: '1px solid #e7e7e7', marginBottom: 20, padding: 20, background: '#f8f8f8' } },
 			_react2.default.createElement(
-				"h2",
+				'h2',
 				null,
 				secondPage.title
 			),
-			_react2.default.createElement("div", { dangerouslySetInnerHTML: createMarkup() })
+			_react2.default.createElement('div', { dangerouslySetInnerHTML: createMarkup() })
 		);
 	};
 
