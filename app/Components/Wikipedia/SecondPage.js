@@ -6,9 +6,9 @@ const SecondPage = ({secondPage}) => {
 	}
 
 	return (
-		<div>
+		<div className="second-page">
 			<h2>{secondPage.title}</h2>
-			<p dangerouslySetInnerHTML={createMarkup()}></p>
+			<div dangerouslySetInnerHTML={createMarkup()}></div>
 		</div>
 	);
 };

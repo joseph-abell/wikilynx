@@ -25033,7 +25033,7 @@
 /* 221 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -25053,14 +25053,14 @@
 		}
 
 		return _react2.default.createElement(
-			'div',
-			null,
+			"div",
+			{ className: "first-page" },
 			_react2.default.createElement(
-				'h2',
+				"h2",
 				null,
 				firstPage.title
 			),
-			_react2.default.createElement('p', { dangerouslySetInnerHTML: createMarkup() })
+			_react2.default.createElement("div", { dangerouslySetInnerHTML: createMarkup() })
 		);
 	};
 
@@ -25074,7 +25074,7 @@
 /* 222 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
@@ -25094,14 +25094,14 @@
 		}
 
 		return _react2.default.createElement(
-			'div',
-			null,
+			"div",
+			{ className: "second-page" },
 			_react2.default.createElement(
-				'h2',
+				"h2",
 				null,
 				secondPage.title
 			),
-			_react2.default.createElement('p', { dangerouslySetInnerHTML: createMarkup() })
+			_react2.default.createElement("div", { dangerouslySetInnerHTML: createMarkup() })
 		);
 	};
 

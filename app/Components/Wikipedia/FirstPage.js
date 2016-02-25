@@ -6,9 +6,9 @@ const FirstPage = ({firstPage}) => {
 	}
 
 	return (
-		<div>
+		<div className="first-page">
 			<h2>{firstPage.title}</h2>
-			<p dangerouslySetInnerHTML={createMarkup()}></p>
+			<div dangerouslySetInnerHTML={createMarkup()}></div>
 		</div>
 	);
 };
