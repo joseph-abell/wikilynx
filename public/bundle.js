@@ -25003,7 +25003,7 @@
 					state: 'notes'
 				});
 
-				(0, _helpers2.default)('games').then(function (data) {
+				_helpers2.default.getPages('games').then(function (data) {
 					this.setState({
 						firstPage: data[0],
 						secondPage: data[1]
@@ -25145,7 +25145,6 @@
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
-	exports.default = getPages;
 
 	var _jsonp = __webpack_require__(224);
 
@@ -25153,48 +25152,65 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function getPage() {
-		return new Promise(function (resolve, reject) {
-			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&grnlimit=1&uselang=user/', function (err, data) {
-				if (err) {
-					reject(Error(err));
+	var funcs = {
+		getPageContent: function getPageContent(generateRandom, title) {
+			return new Promise(function (resolve, reject) {
+				if (generateRandom) {
+					(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&grnlimit=1&uselang=user/', function (err, data) {
+						if (err) {
+							reject(Error(err));
+						}
+						resolve(data);
+					});
+				} else {
+					(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=query&titles=' + title + '&grnnamespace=0&prop=revisions&grnlimit=1&uselang=user/', function (err, data) {
+						if (err) {
+							reject(Error(err));
+						}
+						resolve(data);
+					});
 				}
-				resolve(data);
 			});
-		});
-	}
+		},
 
-	function parseText(data) {
-		return new Promise(function (resolve, reject) {
-			(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + data + '&prop=text', function (err, newData) {
-				if (err) {
-					reject(Error(err));
-				}
+		parseText: function parseText(data) {
+			return new Promise(function (resolve, reject) {
+				(0, _jsonp2.default)('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + data + '&prop=text', function (err, newData) {
+					if (err) {
+						reject(Error(err));
+					}
 
-				var content = newData.parse.text['*'];
-				content = content.replace(/href="\/wiki\//g, 'data-url="');
-				console.log(content);
-				resolve(content);
+					var content = newData.parse.text['*'];
+					content = content.replace(/href="\/wiki\//g, 'data-url="');
+					resolve(content);
+				});
 			});
-		});
-	}
+		},
 
-	function getPages() {
-		return Promise.all([getPage(), getPage()]).then(function (arr) {
-			var page0Key = Object.keys(arr[0].query.pages);
-			var page1Key = Object.keys(arr[1].query.pages);
+		getPages: function getPages() {
+			var current = this;
+			return Promise.all([current.getPageContent(true, ""), current.getPageContent(true, "")]).then(function (arr) {
+				var page0Key = Object.keys(arr[0].query.pages);
+				var page1Key = Object.keys(arr[1].query.pages);
 
-			return Promise.all([parseText(arr[0].query.pages[page0Key].title), parseText(arr[1].query.pages[page1Key].title)]).then(function (parsedArr) {
-				return [{
-					'title': arr[0].query.pages[page0Key].title,
-					'content': parsedArr[0]
-				}, {
-					'title': arr[1].query.pages[page1Key].title,
-					'content': parsedArr[1]
-				}];
+				return Promise.all([current.parseText(arr[0].query.pages[page0Key].title), current.parseText(arr[1].query.pages[page1Key].title)]).then(function (parsedArr) {
+					return [{
+						'title': arr[0].query.pages[page0Key].title,
+						'content': parsedArr[0]
+					}, {
+						'title': arr[1].query.pages[page1Key].title,
+						'content': parsedArr[1]
+					}];
+				});
 			});
-		});
-	}
+		},
+
+		getPage: function getPage() {
+			return true;
+		}
+	};
+
+	exports.default = funcs;
 
 /***/ },
 /* 224 */

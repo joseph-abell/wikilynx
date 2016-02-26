@@ -3,7 +3,7 @@ import Router from 'react-router';
 import FirstWiki from './Wikipedia/FirstPage';
 import SecondWiki from './Wikipedia/SecondPage';
 import Home from './Home';
-import getPages from '../Utils/helpers';
+import helpers from '../Utils/helpers';
 import Rebase from 're-base';
 
 const base = Rebase.createClass('https://reacttutorialja.firebaseio.com/');
@@ -39,7 +39,7 @@ class Game extends React.Component {
 		});
 
 
-		getPages('games').then( function (data) {
+		helpers.getPages('games').then( function (data) {
 			this.setState({
 				firstPage: data[0],
 				secondPage: data[1]
