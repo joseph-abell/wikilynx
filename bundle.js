@@ -25181,6 +25181,7 @@
 					}
 
 					var content = newData.parse.text['*'];
+					content = content.replace(/(style="(.)*")/g, '');
 					content = content.replace(/href="\/wiki\//g, 'data-url="');
 					content = content.replace(/<span class="mw-editsection">/g, '<span class="mw-editsection" style="display: none">');
 					resolve(content);
