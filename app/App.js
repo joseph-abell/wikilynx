@@ -1,16 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
-import { Router, Route, IndexRoute, hashHistory } from 'react-router';
-import Main from './Components/Main';
-import Home from './Components/Home';
-import Game from './Components/Game';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
+import gameApp from './Reducers';
+import App from './Components/App';
 
-ReactDOM.render(
-	<Router history={hashHistory}>
-		<Route path="/" component={Main}>
-			<Route path="Game/Random" component={Game} />
-			<IndexRoute component={Game} />
-		</Route>
-	</Router>,
+let store = createStore(gameApp);
+
+render(
+	<Provider store={store}>
+		<App />
+	</Provider>,
 	document.getElementById('app')
 );
