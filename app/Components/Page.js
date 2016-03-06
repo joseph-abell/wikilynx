@@ -6,7 +6,7 @@ const Page = ({ name, content, onClick }) => (
 			Get From:{' '}{name}
 			<span onClick={onClick}>- Random Page</span>
 		</h3>
-		{content && <div>{content}</div>}
+		<div>{content}</div>
 	</div>
 );
 

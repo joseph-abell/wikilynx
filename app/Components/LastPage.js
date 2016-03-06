@@ -6,7 +6,7 @@ const LastPage = ({ name, content, onLastPageClick }) => (
 			To:{' '}{name}
 			<span onClick={onLastPageClick}>- Random Page</span>
 		</h3>
-		{content && <div>{content}</div>}
+		<div>{content}</div>
 	</div>
 );
 
