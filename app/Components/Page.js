@@ -1,14 +1,22 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 
-const Page = ({ name, content, onClick }) => (
-	<div>
-		<h3>
-			Get From:{' '}{name}
-			<span onClick={onClick}>- Random Page</span>
-		</h3>
-		<div>{content}</div>
-	</div>
-);
+class Page extends Component {
+	render () {
+		let { name, content, onClick} = this.props;
+		function rawHtml() {
+			return { __html: content};
+		};
+		return (
+			<div>
+				<h3>
+					Get From:{' '}{name}
+					<span onClick={onClick}>- Random Page</span>
+				</h3>
+				<div dangerouslySetInnerHTML={rawHtml()} />
+			</div>
+		);
+	}
+}
 
 Page.propTypes = {
 	name: PropTypes.string.isRequired,

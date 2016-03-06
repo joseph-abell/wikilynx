@@ -28,7 +28,11 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 				const name = data.query.pages[key].title;
 
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + name + '&prop=text', function (err, newData) {
-					const content = newData.parse.text['*'];
+					let content = newData.parse.text['*'];
+
+					content = content.replace(/(style="(.)*")/g, '');
+					content = content.replace(/href="\/wiki\//g, 'data-url="');
+					content = content.replace(/<span class="mw-editsection">/g, '<span class="mw-editsection" style="display: none">');
 
 					dispatch(getLastPage(name, content));
 				});
