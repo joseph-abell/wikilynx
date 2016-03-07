@@ -9,17 +9,19 @@ class Page extends Component {
 
 		const style = {
 			height: 400,
-			overflowY: 'auto'
+			overflowY: 'auto',
+			backgroundColor: '#eee',
+			borderRadius: 6,
+			padding: '30px'
 		};
 
 		return (
 			<div>
-				{ playerReady && <div className="jumbotron" style={style}>
-					<h3>
-						Get From:{' '}{name}
-						<span onClick={onClick}>- Random Page</span>
-					</h3>
-					<div dangerouslySetInnerHTML={rawHtml()} /> 
+				{ playerReady && <div>
+					<h2>From: {name}</h2>
+					<div style={style}>
+						<div dangerouslySetInnerHTML={rawHtml()} /> 
+					</div> 
 				</div> }
 			</div>
 		);
