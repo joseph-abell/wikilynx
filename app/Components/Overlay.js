@@ -13,10 +13,9 @@ class Overlay extends Component {
 			<div>
 				{!playerReady && 
 				<div style={style}>
-					<h2 style={{marginTop: 0}}>Ready? Select Begin to choose 2 random pages.</h2>
-					<button className="btn btn-primary" onClick={() => {
+					<button className="btn" style={{backgroundColor: '#CBE86B', color: '#fff'}} onClick={() => {
 						onOverlayClick(playerReady)	
-					}}>Begin</button>
+					}}><h2 style={{margin: 0}}>Random Game</h2></button>
 				</div>
 				}
 			</div>
