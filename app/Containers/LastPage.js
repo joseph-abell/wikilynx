@@ -7,13 +7,15 @@ const mapStateToProps = (state) => {
 	if (state.lastPage.name === undefined || state.lastPage.content === undefined) {
 		return {
 			name: '',
-			content: ''
+			content: '',
+			playerReady: false
 		};
 	}
 	
 	return {
 		name: state.lastPage.name,
-		content: state.lastPage.content
+		content: state.lastPage.content,
+		playerReady: state.overlay.playerReady
 	};
 };
 

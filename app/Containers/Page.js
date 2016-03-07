@@ -7,13 +7,15 @@ const mapStateToProps = (state) => {
 	if (state.pages.length === 0) {
 		return {
 			name: '',
-			content: ''
+			content: '',
+			playerReady: false
 		};
 	}
 	
 	return {
 		name: state.pages[state.pages.length - 1].name,
-		content: state.pages[state.pages.length - 1].content
+		content: state.pages[state.pages.length - 1].content,
+		playerReady: state.overlay.playerReady
 	};
 };
 
