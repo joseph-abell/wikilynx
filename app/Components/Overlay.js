@@ -6,10 +6,9 @@ class Overlay extends Component {
 		return (
 			<div>
 				{!playerReady && 
-				<div>
-					<h1>Get from one wikipedia page to another in the fewest clicks.</h1>
+				<div className="jumbotron">
 					<h2>Ready? Select Begin to choose 2 random pages.</h2>
-					<button onClick={() => {
+					<button className="btn btn-primary" onClick={() => {
 						onOverlayClick(playerReady)	
 					}}>Begin</button>
 				</div>

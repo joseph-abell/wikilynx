@@ -5,10 +5,15 @@ class LastPage extends Component {
 		let { name, content, onLastPageClick, playerReady } = this.props;
 		function rawHtml() {
 			return { __html: content};
+		}
+
+		const style = {
+			height: 400,
+			overflowY: 'auto'
 		};
 		return (
 			<div>
-				{ playerReady && <div>
+				{ playerReady && <div className="jumbotron" style={style}>
 					<h3>
 						To:{' '}{name}
 						<span onClick={onLastPageClick}>- Random Page</span>

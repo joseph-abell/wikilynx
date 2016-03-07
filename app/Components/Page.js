@@ -6,9 +6,15 @@ class Page extends Component {
 		function rawHtml() {
 			return { __html: content};
 		};
+
+		const style = {
+			height: 400,
+			overflowY: 'auto'
+		};
+
 		return (
 			<div>
-				{ playerReady && <div>
+				{ playerReady && <div className="jumbotron" style={style}>
 					<h3>
 						Get From:{' '}{name}
 						<span onClick={onClick}>- Random Page</span>
