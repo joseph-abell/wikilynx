@@ -4,6 +4,7 @@ import Overlay from '../Components/Overlay';
 import { togglePlayerReady, getPage, getLastPage } from '../Actions';
 
 const mapStateToProps = (state) => {
+	
 	if (state.overlay.playerReady === undefined) {
 		return {
 			playerReady: false
@@ -15,7 +16,7 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = (dispatch) => {
 	return {
 		onOverlayClick: (playerReady) => {
 			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&grnlimit=2&uselang=user/', function (err, data) {

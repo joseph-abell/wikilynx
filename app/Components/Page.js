@@ -2,10 +2,10 @@ import React, { PropTypes, Component } from 'react';
 
 class Page extends Component {
 	render () {
-		let { name, content, onClick, playerReady} = this.props;
+		let { name, content, playerReady} = this.props;
 		function rawHtml() {
 			return { __html: content};
-		};
+		}
 
 		const style = {
 			height: 400,
@@ -20,7 +20,7 @@ class Page extends Component {
 				{ playerReady && <div>
 					<h2>From: {name}</h2>
 					<div style={style}>
-						<div dangerouslySetInnerHTML={rawHtml()} /> 
+						<div dangerouslySetInnerHTML={rawHtml()} />
 					</div> 
 				</div> }
 			</div>
@@ -31,7 +31,6 @@ class Page extends Component {
 Page.propTypes = {
 	name: PropTypes.string.isRequired,
 	content: PropTypes.string.isRequired,
-	onClick: PropTypes.func.isRequired,
 	playerReady: PropTypes.bool.isRequired
 };
 

@@ -19,30 +19,6 @@ const mapStateToProps = (state) => {
 	};
 };
 
-const mapDispatchToProps = (dispatch, ownProps) => {
-	return {
-		onClick: () => {
-			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions&grnlimit=1&uselang=user/', function (err, data) {
-				if (err) { 
-					console.error(err);
-				}
-				const key = Object.keys(data.query.pages);
-				const name = data.query.pages[key].title;
-
-				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + name + '&prop=text', function (err, newData) {
-					let content = newData.parse.text['*'];
-
-					content = content.replace(/(style="(.)*")/g, '');
-					content = content.replace(/href="\/wiki\//g, 'data-url="');
-					content = content.replace(/<span class="mw-editsection">/g, '<span class="mw-editsection" style="display: none">');
-
-					dispatch(getPage(name, content));
-				});
-			});
-		}
-	};
-};
-
-const PageContainer = connect(mapStateToProps, mapDispatchToProps)(Page);
+const PageContainer = connect(mapStateToProps)(Page);
 
 export default PageContainer;
