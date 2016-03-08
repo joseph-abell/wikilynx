@@ -3,6 +3,33 @@ import { connect } from 'react-redux';
 import Overlay from '../Components/Overlay';
 import { togglePlayerReady, getPage, getLastPage } from '../Actions';
 
+const cleanHtml = (content) => {
+	content = content.replace(/(style="[\s\S]+?")/g, '');
+	content = content.replace(/<span class="mw-editsection">/g, '<span class="mw-editsection" style="display: none">');
+	content = content.replace(/<div id="toc"/g, '<div style="display: none;"');
+	content = content.replace(/<li class="nv-view">([\s\S]+?)(<li class="nv-edit">([\s\S]+?)<\/li>)/g, '');
+	content = content.replace(/<ol class="references">[\s\S]+?(<\/ol>)/g, '');
+	content = content.replace(/<span class="mw-headline" id="References">References<\/span>/g, '');
+	content = content.replace(/href="[\s\S]+?(")/g, '');
+	content = content.replace(/<span id="coordinates"/g, '<span style="display: none;"');
+	content = content.replace(/<!--[\s\S]+?(-->)/g, '');
+
+	const linkArray = content.match(/(<a[\s\S]+?(<\/a>))/gm);
+	let filteredLinkArray = [];
+	for (let i = 0; i < linkArray.length; i++) {
+		if (!linkArray[i].match(/(title=[\s\S]+?")/g)) {
+			filteredLinkArray[filteredLinkArray.length] = linkArray[i];
+		}
+	}
+	for (let j = 0; j < filteredLinkArray.length; j++) {
+		const newLink = filteredLinkArray[j].replace(/<a/g, '<a style="color: #000;"');
+		content = content.replace(filteredLinkArray[j], newLink);
+	}
+	
+
+	return content;
+};
+
 const mapStateToProps = (state) => {
 	
 	if (state.overlay.playerReady === undefined) {
@@ -31,18 +58,14 @@ const mapDispatchToProps = (dispatch) => {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + name0 + '&prop=text', function (err, content0) {
 					content0 = content0.parse.text['*'];
 
-					content0 = content0.replace(/(style="(.)*")/g, '');
-					content0 = content0.replace(/href="\/wiki\//g, 'data-url="');
-					content0 = content0.replace(/<span class="mw-editsection">/g, '<span class="mw-editsection" style="display: none">');
+					content0 = cleanHtml(content0);
 
 					dispatch(getPage(name0, content0));
 
 					jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + name1 + '&prop=text', function (err, content1) {
 						content1 = content1.parse.text['*'];
 
-						content1 = content1.replace(/(style="(.)*")/g, '');
-						content1 = content1.replace(/href="\/wiki\//g, 'data-url="');
-						content1 = content1.replace(/<span class="mw-editsection">/g, '<span class="mw-editsection" style="display: none">');
+						content1 = cleanHtml(content1);
 
 						dispatch(getLastPage(name1, content1));
 						dispatch(togglePlayerReady(true));
