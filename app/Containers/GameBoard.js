@@ -3,7 +3,7 @@ import GameBoard from '../Components/GameBoard';
 
 const mapStateToProps = (state) => {
 	return {
-		firstTitle: state.currentPage.title,
+		firstTitle: state.firstPage,
 		lastTitle: state.lastPage,
 		links: state.currentPage.links
 	};

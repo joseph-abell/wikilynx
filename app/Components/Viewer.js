@@ -13,15 +13,15 @@ class Viewer extends Component {
 			overflowY: 'auto',
 			backgroundColor: '#eee',
 			borderRadius: 6,
-			padding: '30px'
+			padding: 30
 		};
 
 		return (
-			<div>
-				<h2>You are Viewing: {title}</h2>
-				<div style={style}>
+			<div className="col-md-6" style={{marginBottom: 20}}>
+				{title && <div style={style}>
+					<h3 style={{marginTop: 0}}>{title}</h3>
 					<div dangerouslySetInnerHTML={rawHtml()} />
-				</div> 
+				</div> }
 			</div>
 		);
 	}

@@ -3,6 +3,8 @@ export const GET_FIRST_PAGE = "GET_FIRST_PAGE";
 export const GET_LAST_PAGE = "GET_LAST_PAGE";
 export const GET_CURRENT_PAGE = "GET_CURRENT_PAGE";
 export const GET_VIEWER = "GET_VIEWER";
+export const ADD_BREADCRUMB = "ADD_BREADCRUMB";
+export const COMPLETE_GAME = "COMPLETE_GAME";
 
 export function togglePlayerReady (playerReady) {
 	return {
@@ -44,5 +46,23 @@ export function getViewer (title, content) {
 			title: title,
 			content: content
 		}
+	};
+}
+
+export function addBreadcrumb (title) {
+	return {
+		type: ADD_BREADCRUMB,
+		title: title
+	};
+}
+
+export function completeGame (isCompleted, breadcrumbs, lastPage) {
+	return {
+		type: COMPLETE_GAME,
+		completedGame: {
+			isCompleted: isCompleted,
+			breadcrumbs: breadcrumbs
+		}
+
 	};
 }

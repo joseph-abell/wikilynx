@@ -3,7 +3,8 @@ import {
 	GET_FIRST_PAGE, 
 	GET_LAST_PAGE, 
 	GET_CURRENT_PAGE, 
-	GET_VIEWER
+	GET_VIEWER,
+	ADD_BREADCRUMB
 } from '../Actions';
 
 const firstPage = (state = '', action) => {
@@ -25,7 +26,6 @@ const lastPage = (state = '', action) => {
 };
 
 const currentPage = (state = {title: '', links: []}, action) => {
-	console.log(action);
 	switch (action.type) {
 		case GET_CURRENT_PAGE:
 			return {
@@ -49,9 +49,24 @@ const viewer = (state = {title: '', content: ''}, action) => {
 	}
 };
 
+const breadcrumbs = (state = [], action) => {
+	console.log(action);
+	switch (action.type) {
+		case ADD_BREADCRUMB:
+			return [
+				...state,
+				{
+					title: action.title
+				}
+			];
+		default:
+			return state;
+	}
+};
+
 
 const gameApp = combineReducers({
-	viewer, firstPage, lastPage, currentPage
+	viewer, firstPage, lastPage, currentPage, breadcrumbs
 });
 
 export default gameApp;
