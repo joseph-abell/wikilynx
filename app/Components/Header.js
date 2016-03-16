@@ -19,7 +19,7 @@ class Header extends Component {
 				}}>
 					<h2 style={{margin: 0}}>Random Game</h2>
 				</button>
-				{!lastTitle && <div style={{clear: 'both'}}></div> }
+				<div style={{clear: 'both'}}></div>
 			</div>
 		);
 	}
