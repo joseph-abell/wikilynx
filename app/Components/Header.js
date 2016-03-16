@@ -14,11 +14,11 @@ class Header extends Component {
 					<span style={{display: 'inline-block', marginRight: 30}}>Wikilynx</span>
 					<small>Get from one wikipedia page to another in the fewest clicks.</small>
 				</h1>}
-				<button className="btn" style={{float: 'right', display: 'block', marginTop: 17, backgroundColor: '#CBE86B', color: '#fff'}} onClick={() => {
+				{!lastTitle && <button className="btn" style={{float: 'right', display: 'block', marginTop: 17, backgroundColor: '#CBE86B', color: '#fff'}} onClick={() => {
 					onRandomGameClick()	
 				}}>
 					<h2 style={{margin: 0}}>Random Game</h2>
-				</button>
+				</button> }
 				{!lastTitle && <div style={{clear: 'both'}}></div> }
 			</div>
 		);
