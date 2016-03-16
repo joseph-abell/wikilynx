@@ -1,8 +1,8 @@
 import React from 'react';
-import Page from '../Containers/Page';
-import LastPage from '../Containers/LastPage';
-import Overlay from '../Containers/Overlay';
-import Header from './Header';
+import Header from '../Containers/Header';
+import GameBoard from '../Containers/GameBoard';
+import Viewer from '../Containers/Viewer';
+
 import { connect } from 'react-redux';
 import { addGame, getPage } from '../Actions';
 
@@ -10,11 +10,8 @@ let App = ({dispatch}) => {
 	return (
 		<div className="container">
 			<Header />
-			<Overlay />
-			<div>
-				<Page />
-				<LastPage />
-			</div>
+			<GameBoard />
+			<Viewer />
 		</div>
 	);
 };

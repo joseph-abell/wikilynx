@@ -14,6 +14,7 @@
   "bugs": "https://github.com/gerbilsinspace/wikilynx/issues",
   "dependencies": {
     "babel-polyfill": "^6.3.14",
+    "html-to-react": "^0.1.2",
     "humps": "^0.6.0",
     "isomorphic-fetch": "^2.1.1",
     "jsonp": "^0.2.0",
@@ -26,7 +27,8 @@
     "react-router-redux": "^4.0.0-rc.1",
     "redux": "^3.2.1",
     "redux-logger": "^2.4.0",
-    "redux-thunk": "^1.0.3"
+    "redux-thunk": "^1.0.3",
+    "xml2js": "^0.4.16"
   },
   "devDependencies": {
     "babel-core": "^6.3.15",
