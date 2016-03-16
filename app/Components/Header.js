@@ -6,7 +6,7 @@ class Header extends Component {
 
 		return (
 			<div className="page-header">
-				{lastTitle && <h1>
+				{lastTitle && <h1 style={{float: 'left'}}>
 					<span style={{display: 'inline-block', marginRight: 30}}>Wikilynx</span>
 					<small>Get from <span style={{color: '#000'}}>{firstTitle}</span> to <span style={{color: '#000'}}>{lastTitle}</span> in the fewest clicks.</small>
 				</h1>}
