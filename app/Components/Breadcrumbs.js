@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import ViewButton from '../Containers/ViewButton';
 
 class Breadcrumbs extends Component {
 	render () {
@@ -6,11 +7,11 @@ class Breadcrumbs extends Component {
 
 		return (
 			<div className="col-md-12" style={{marginBottom: 20}}>
-				<h2>Breadcrumbs</h2>
+				{breadcrumbs[0] && <h2 style={{marginTop: 0}}>Breadcrumbs</h2>}
 				{
 					breadcrumbs.map(function (breadcrumb, index) {
 						return (
-							<div key={index}>{breadcrumb.title}</div>
+							<div style={{marginBottom: 10}} key={index}>{breadcrumb.title} <ViewButton title={breadcrumb.title} /></div>
 						);
 					})
 				}

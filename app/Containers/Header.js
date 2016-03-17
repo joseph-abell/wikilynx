@@ -16,7 +16,6 @@ const cleanLinks = (links) => {
 };
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		title: state.viewer.title, 
 		content: state.viewer.content,

@@ -50,7 +50,6 @@ const viewer = (state = {title: '', content: ''}, action) => {
 };
 
 const breadcrumbs = (state = [], action) => {
-	console.log(action);
 	switch (action.type) {
 		case ADD_BREADCRUMB:
 			return [

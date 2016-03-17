@@ -56,7 +56,7 @@ export function addBreadcrumb (title) {
 	};
 }
 
-export function completeGame (isCompleted, breadcrumbs, lastPage) {
+export function completeGame (isCompleted, breadcrumbs) {
 	return {
 		type: COMPLETE_GAME,
 		completedGame: {

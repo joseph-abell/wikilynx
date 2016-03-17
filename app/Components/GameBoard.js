@@ -17,7 +17,7 @@ class GameBoard extends Component {
 			<div className="col-md-6" style={{marginBottom: 20}}>
 				{ links[0] && <div>
 					<div style={style}>
-						<h3 style={{marginTop: 0}}>Links</h3>
+						<h3 style={{marginTop: 0}}>Available Moves</h3>
 						<ul style={{margin: 0, padding: 0}}>
 						{
 							links.map(function (link, index) {
