@@ -3,7 +3,7 @@ import ViewButton from '../Containers/ViewButton';
 
 class Breadcrumbs extends Component {
 	render () {
-		let { breadcrumbs } = this.props;
+		let { breadcrumbs, isCompleted } = this.props;
 
 		return (
 			<div className="col-md-12" style={{marginBottom: 20}}>
@@ -11,7 +11,7 @@ class Breadcrumbs extends Component {
 				{
 					breadcrumbs.map(function (breadcrumb, index) {
 						return (
-							<div style={{marginBottom: 10}} key={index}>{breadcrumb.title} <ViewButton title={breadcrumb.title} /></div>
+							<div style={{marginBottom: 10}} key={index}>{breadcrumb.title} {!isCompleted && <div><ViewButton title={breadcrumb.title} /></div>}</div>
 						);
 					})
 				}
@@ -21,7 +21,8 @@ class Breadcrumbs extends Component {
 };
 
 Breadcrumbs.propTypes = {
-	breadcrumbs: PropTypes.array.isRequired
+	breadcrumbs: PropTypes.array.isRequired,
+	isCompleted: PropTypes.bool.isRequired
 };
 
 export default Breadcrumbs;

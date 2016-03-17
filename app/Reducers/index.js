@@ -4,7 +4,9 @@ import {
 	GET_LAST_PAGE, 
 	GET_CURRENT_PAGE, 
 	GET_VIEWER,
-	ADD_BREADCRUMB
+	ADD_BREADCRUMB,
+	COMPLETE_GAME,
+	RESET_BREADCRUMB
 } from '../Actions';
 
 const firstPage = (state = '', action) => {
@@ -19,7 +21,7 @@ const firstPage = (state = '', action) => {
 const lastPage = (state = '', action) => {
 	switch (action.type) {
 		case GET_LAST_PAGE:
-			return action.lastPage.title;
+			return action.lastPage;
 		default:
 			return state;
 	}
@@ -58,14 +60,26 @@ const breadcrumbs = (state = [], action) => {
 					title: action.title
 				}
 			];
+		case RESET_BREADCRUMB:
+			return [];
 		default:
 			return state;
 	}
 };
 
+const completeGame = (state = {isCompleted: false}, action) => {
+	switch (action.type) {
+		case COMPLETE_GAME:
+			return {
+				isCompleted: action.isCompleted
+			};
+		default:
+			return state;
+	}
+};
 
 const gameApp = combineReducers({
-	viewer, firstPage, lastPage, currentPage, breadcrumbs
+	viewer, firstPage, lastPage, currentPage, breadcrumbs, completeGame
 });
 
 export default gameApp;

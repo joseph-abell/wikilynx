@@ -3,7 +3,8 @@ import Breadcrumbs from '../Components/Breadcrumbs';
 
 const mapStateToProps = (state) => {
 	return {
-		breadcrumbs: state.breadcrumbs
+		breadcrumbs: state.breadcrumbs,
+		isCompleted: state.completeGame.isCompleted
 	};
 };
 

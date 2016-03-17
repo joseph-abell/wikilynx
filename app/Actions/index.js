@@ -4,7 +4,9 @@ export const GET_LAST_PAGE = "GET_LAST_PAGE";
 export const GET_CURRENT_PAGE = "GET_CURRENT_PAGE";
 export const GET_VIEWER = "GET_VIEWER";
 export const ADD_BREADCRUMB = "ADD_BREADCRUMB";
+export const RESET_BREADCRUMB = "RESET_BREADCRUMB";
 export const COMPLETE_GAME = "COMPLETE_GAME";
+
 
 export function togglePlayerReady (playerReady) {
 	return {
@@ -23,9 +25,7 @@ export function getFirstPage (title) {
 export function getLastPage (title) {
 	return {
 		type: GET_LAST_PAGE,
-		lastPage: {
-			title: title
-		}
+		lastPage: title
 	};
 }
 
@@ -56,13 +56,15 @@ export function addBreadcrumb (title) {
 	};
 }
 
-export function completeGame (isCompleted, breadcrumbs) {
+export function resetBreadcrumb () {
+	return {
+		type: RESET_BREADCRUMB
+	};
+}
+
+export function completeGame (isCompleted) {
 	return {
 		type: COMPLETE_GAME,
-		completedGame: {
-			isCompleted: isCompleted,
-			breadcrumbs: breadcrumbs
-		}
-
+		isCompleted: isCompleted
 	};
 }

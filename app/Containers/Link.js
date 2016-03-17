@@ -17,7 +17,11 @@ const cleanLinks = (links) => {
 
 
 const mapStateToProps = (state) => {
-	return state;
+	return {
+		isCompleted: state.completeGame.isCompleted,
+		lastPage: state.lastPage,
+		breadcrumbs: state.breadcrumbs
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {
@@ -25,7 +29,7 @@ const mapDispatchToProps = (dispatch) => {
 		onLinkClick: (title, finalTitle, breadcrumbs) => {
 			if (title === finalTitle) {
 				dispatch(addBreadcrumb(title));
-				dispatch(completeGame(true, breadcrumbs));
+				dispatch(completeGame(true));
 			} else {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + title + '&prop=text|links', function (err, content) {
 					let links = content.parse.links;

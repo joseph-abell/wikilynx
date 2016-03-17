@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 
 class Viewer extends Component {
 	render () {
-		let { title, content} = this.props;
+		let { title, content, isCompleted } = this.props;
 
 		function rawHtml() {
 			return { __html: content};
@@ -18,7 +18,7 @@ class Viewer extends Component {
 
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
-				{title && <div style={style}>
+				{title && !isCompleted && <div style={style}>
 					<h3 style={{marginTop: 0}}>{title}</h3>
 					<div dangerouslySetInnerHTML={rawHtml()} />
 				</div> }
@@ -29,7 +29,8 @@ class Viewer extends Component {
 
 Viewer.propTypes = {
 	title: PropTypes.string.isRequired,
-	content: PropTypes.string.isRequired
+	content: PropTypes.string.isRequired,
+	isCompleted: PropTypes.bool.isRequired
 };
 
 export default Viewer;
