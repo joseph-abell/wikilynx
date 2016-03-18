@@ -6,6 +6,8 @@ export const GET_VIEWER = "GET_VIEWER";
 export const ADD_BREADCRUMB = "ADD_BREADCRUMB";
 export const RESET_BREADCRUMB = "RESET_BREADCRUMB";
 export const COMPLETE_GAME = "COMPLETE_GAME";
+export const TOGGLE_VIEWER_LOADING = "TOGGLE_VIEWER_LOADING";
+export const TOGGLE_GAME_BOARD_LOADING = "TOGGLE_GAME_BOARD_LOADING";
 
 
 export function togglePlayerReady (playerReady) {
@@ -66,5 +68,19 @@ export function completeGame (isCompleted) {
 	return {
 		type: COMPLETE_GAME,
 		isCompleted: isCompleted
+	};
+}
+
+export function toggleViewerLoading (loading) {
+	return {
+		type: TOGGLE_VIEWER_LOADING,
+		viewerLoading: loading
+	};
+}
+
+export function toggleGameBoardLoading (loading) {
+	return {
+		type: TOGGLE_GAME_BOARD_LOADING,
+		gameBoardLoading: loading
 	};
 }

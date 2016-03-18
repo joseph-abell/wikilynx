@@ -6,7 +6,9 @@ import {
 	GET_VIEWER,
 	ADD_BREADCRUMB,
 	COMPLETE_GAME,
-	RESET_BREADCRUMB
+	RESET_BREADCRUMB,
+	TOGGLE_VIEWER_LOADING,
+	TOGGLE_GAME_BOARD_LOADING
 } from '../Actions';
 
 const firstPage = (state = '', action) => {
@@ -78,8 +80,26 @@ const completeGame = (state = {isCompleted: false}, action) => {
 	}
 };
 
+const viewerLoading = (state = false, action) => {
+	switch (action.type) {
+		case TOGGLE_VIEWER_LOADING:
+			return action.viewerLoading;
+		default:
+			return state;
+	}
+};
+
+const gameBoardLoading = (state = false, action) => {
+	switch (action.type) {
+		case TOGGLE_GAME_BOARD_LOADING:
+			return action.gameBoardLoading;
+		default:
+			return state;
+	}
+};
+
 const gameApp = combineReducers({
-	viewer, firstPage, lastPage, currentPage, breadcrumbs, completeGame
+	viewer, firstPage, lastPage, currentPage, breadcrumbs, completeGame, viewerLoading, gameBoardLoading
 });
 
 export default gameApp;

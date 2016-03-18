@@ -3,7 +3,7 @@ import Link from '../Containers/Link';
 
 class GameBoard extends Component {
 	render () {
-		let { isCompleted, links } = this.props;
+		let { isCompleted, links, gameBoardLoading } = this.props;
 		
 		const style = {
 			height: 400,
@@ -15,7 +15,7 @@ class GameBoard extends Component {
 
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
-				{ links[0] && !isCompleted && <div>
+				{ links[0] && !isCompleted && !gameBoardLoading && <div>
 					<div style={style}>
 						<h3 style={{marginTop: 0}}>Available Moves</h3>
 						<ul style={{margin: 0, padding: 0}}>
@@ -31,6 +31,9 @@ class GameBoard extends Component {
 						</ul>
 					</div>
 				</div> }
+				{ gameBoardLoading && !isCompleted && <div style={style}>
+					Loading...
+				</div>}
 			</div>
 		);
 	}

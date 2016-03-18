@@ -3,10 +3,12 @@ import Viewer from '../Components/Viewer';
 import { getViewerPage } from '../Actions';
 
 const mapStateToProps = (state) => {
+	console.log(state);
 	return {
 		title: state.viewer.title, 
 		content: state.viewer.content,
-		isCompleted: state.completeGame.isCompleted
+		isCompleted: state.completeGame.isCompleted,
+		viewerLoading: state.viewerLoading
 	};
 };
 

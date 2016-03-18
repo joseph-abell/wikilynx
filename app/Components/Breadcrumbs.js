@@ -5,16 +5,26 @@ class Breadcrumbs extends Component {
 	render () {
 		let { breadcrumbs, isCompleted } = this.props;
 
+		const style = {
+			height: 200,
+			overflowY: 'auto',
+			backgroundColor: '#eee',
+			borderRadius: 6,
+			padding: 30
+		};
+
 		return (
 			<div className="col-md-12" style={{marginBottom: 20}}>
-				{breadcrumbs[0] && <h2 style={{marginTop: 0}}>Breadcrumbs</h2>}
-				{
-					breadcrumbs.map(function (breadcrumb, index) {
-						return (
-							<div style={{marginBottom: 10}} key={index}>{breadcrumb.title} {!isCompleted && <div><ViewButton title={breadcrumb.title} /></div>}</div>
-						);
-					})
-				}
+				{ breadcrumbs[0] && <div style={style}>
+					<h2 style={{marginTop: 0}}>Breadcrumbs</h2>
+					{
+						breadcrumbs.map(function (breadcrumb, index) {
+							return (
+								<div style={{marginBottom: 10, display: 'inline-block', paddingRight: 20}} key={index}>{breadcrumb.title} {!isCompleted && <div><ViewButton title={breadcrumb.title} /></div>}</div>
+							);
+						})
+					}
+				</div> }
 			</div>
 		);
 	}
