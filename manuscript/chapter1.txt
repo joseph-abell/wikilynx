@@ -1,3 +1,5 @@
-# Chapter 1 - Introduction
+# Introduction
 
-Hello, World!
+One of the hardest challenges I've had to face when learning React JS, other than setup, is trying to piece together the multiple tutorials out there, into one, cohesive, robust app. Dan Abramov, the creator of Redux, has a fantastic video series on Redux, over on egghead.io, which helped give me the underlying knowledge that I needed to attempt this project. As Dan was working on creating a small todo aplication, he was able to work in a single file, and didn't need to split the app into more manageable chunks.
+
+A great ebook that was a good start to me, was survivejs.com, but unfortunately the app that you create in that tutorial (at the time of writng) felt a little bit half baked. The book itself was very useful, bt the source code wasn't as up to date as I would like, and there wasn't much testing of the app involved. Also, I wanted to use Redux, while survive js relies on flux, although he is dabbling with redux.
