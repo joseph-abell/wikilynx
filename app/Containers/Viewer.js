@@ -3,7 +3,6 @@ import Viewer from '../Components/Viewer';
 import { getViewerPage } from '../Actions';
 
 const mapStateToProps = (state) => {
-	console.log(state);
 	return {
 		title: state.viewer.title, 
 		content: state.viewer.content,
