@@ -1,3 +1,0 @@
-# Installation
-
-git, nodejs, react, webpack. 

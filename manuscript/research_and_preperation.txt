@@ -1,0 +1,6 @@
+# Research and Preparation
+
+Speaking from experience, I wish that I had done a little bit of research on the Wikipedia API before I started using it. This probably should have been obvious to me, but Wikipedia is big. Big and varied. Wikipedia doesn't have a specific structure that the content of it's pages follows, which means when trying to make the content work for you on a different project, things break easily. Rules like removing styling from the content break the look of the site, and if you try to remove some content you don't want to show, you may end up accidentally deleting half the content that you do want on a few pages accidentally. 
+
+If you are working with content that behaves a bit nicer than wikipedia's content does, you may be fortunate enough to find that you don't need to worry about the structure of the content that you are working with, and you can create the perfect app that is living in your head. If you are following along with this book to the letter, then Wikipedia, and it's API, will be shaping how our app is designed.
+

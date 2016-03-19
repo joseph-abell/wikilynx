@@ -1,0 +1,7 @@
+# Introduction
+
+If you want to learn how to create a fully featured, fully tested app using ReactJS and Redux, you have come to the right place.
+
+This book aims to create a medium sized project from scratch. I want to show you how to build up a prototype of the app that you are wanting to build, test it add features over time, and structure the app in such a way that it makes it scalable. Although this book will be discussing a specific project, we hope that you will be able to geam enough information to work on other projects with relative ease. We will be trying this out ourselves over time.
+
+For the purposes of this book, we will be game, where the player has to connect two wikipedia pages together in the fewest links. We will first look at the Wikipedia API, and start planning our game. Then we will install ReactJS, and start making a few small sections of the game, test them thoroughly, and build up from there. In the future, we will be looking at adding leaderboards, and the ability to share specific games for competition purposes.
