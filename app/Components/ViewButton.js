@@ -3,6 +3,7 @@ import React, { Component, PropTypes } from 'react';
 class ViewButton extends Component {
 	render () {
 		let { onViewClick, title } = this.props;
+
 		return (
 			<button className="btn btn-default" style={{marginRight:10}} onClick={()=>{
 				onViewClick(title);

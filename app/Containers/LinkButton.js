@@ -1,14 +1,14 @@
 import jsonp from 'jsonp';
 import { connect } from 'react-redux';
-import Link from '../Components/Link';
-import { getViewer, addBreadcrumb, getCurrentPage, completeGame, toggleViewerLoading, toggleGameBoardLoading } from '../Actions';
+import LinkButton from '../Components/LinkButton';
+import { toggleGameBoardLoading, toggleViewerLoading, addBreadcrumb, completeGame, getViewer, getCurrentPage } from '../Actions';
 import { cleanText, cleanLinks } from '../Utils';
 
 const mapStateToProps = (state) => {
 	return {
-		isCompleted: state.completeGame.isCompleted,
-		lastPage: state.lastPage,
-		breadcrumbs: state.breadcrumbs
+		currentPage: {
+			title: state.currentPage.title
+		}
 	};
 };
 
@@ -21,9 +21,10 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(addBreadcrumb(title));
 				dispatch(completeGame(true));
 				dispatch(toggleGameBoardLoading(false));
-			dispatch(toggleViewerLoading(false));
+				dispatch(toggleViewerLoading(false));
 			} else {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + title + '&prop=text|links', function (err, content) {
+					console.log(title);
 					let links = content.parse.links;
 					let newLinks = cleanLinks(links);
 					let text = content.parse.text['*'];
@@ -40,6 +41,6 @@ const mapDispatchToProps = (dispatch) => {
 	};
 };
 
-const LinkContainer = connect(mapStateToProps, mapDispatchToProps)(Link);
+const LinkButtonContainer = connect(mapStateToProps, mapDispatchToProps)(LinkButton);
 
-export default LinkContainer;
+export default LinkButtonContainer;

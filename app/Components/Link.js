@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ViewButton from '../Containers/ViewButton';
+import LinkButton from '../Containers/LinkButton';
 
 class Link extends Component {
 	render () {
@@ -10,11 +11,7 @@ class Link extends Component {
 				{ !isCompleted && <div>
 					<a style={{display: 'block'}}>{title}</a>
 					<ViewButton title={title} />
-					<button className="btn btn-primary" style={{marginRight:10}} onClick={()=>{
-						onLinkClick(title, lastPage, breadcrumbs);
-					}}>
-						<span className="glyphicon glyphicon-ok"></span> Set Link
-					</button>
+					<LinkButton title={title} lastPage={lastPage} breadcrumbs={breadcrumbs} />
 				</div> }
 			</div>
 		);
