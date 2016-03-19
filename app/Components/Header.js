@@ -11,7 +11,7 @@ class Header extends Component {
 					<h1>
 						<span style={{display: 'inline-block', marginRight: 30}}>Wikilynx</span>
 					</h1>
-					<h2 style={{float: 'left', marginTop: 0}}><small>Get from <span style={{color: '#000'}}>{firstTitle}</span> <ViewButton title={firstTitle} /> to <span style={{color: '#000'}}>{lastTitle}</span> <ViewButton title={lastTitle} /> in the fewest clicks.</small></h2>
+					<h2 style={{float: 'left', marginTop: 0}}><small>Get from <span style={{color: '#000'}}>{firstTitle}</span> {!isCompleted && <ViewButton title={firstTitle} /> } to <span style={{color: '#000'}}>{lastTitle}</span> {!isCompleted && <ViewButton title={lastTitle} />} in the fewest clicks.</small></h2>
 					<button className="btn" style={{float: 'right', display: 'block', marginTop: 0, backgroundColor: '#CBE86B', color: '#fff'}} onClick={() => {
 						onRandomGameClick()	
 					}}>
