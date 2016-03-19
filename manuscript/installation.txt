@@ -1,2 +1,15 @@
 # Installation
 
+We will be making an app using ReactJS and Redux, primarily, and unfortunately, there is a little bit of setup we need to do to get set up. For the moment we are assuming that you are on a Mac, but we will have Windows and Linux support shortly.
+
+## Prerequisites
+
+Firstly, you will need to download a version of NodeJS for your development platform you haven't got it already. to do so, go to <a href="http://nodejs.org">http://nodejs.org</a>, and download and install the correct version for your computer.
+
+Secondly, if you don't have a text editor decidated to writing code, I would recommend getting yourself one. I personally use Sublime Text 3, but there is viable free alternatives such as Atom or Notepad++.
+
+Although the next prerequisite is optional, I would highly recommend you getting a code backup system, such as Git, to be found at <a href="https://github.com">Github.com</a>. This will help you save snapshots of your code, and have the ability to roll back to previous states of your code if you mess up, and if you work with more than one person, it will help make sure that you don't accidentally overwrite someone else's code.
+
+## Setting up the project.
+
+Now you have the prerequisites installed, the next step is to setup a folder where your code will live. If you are using Github to host your code, make sure to follow their tutorials on how to set this up.
