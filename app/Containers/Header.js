@@ -10,7 +10,8 @@ import {
 	getViewer, 
 	resetBreadcrumb, 
 	addBreadcrumb, 
-	toggleViewerLoading
+	toggleViewerLoading,
+	toggleGameBoardLoading,
 } from '../Actions';
 
 const mapStateToProps = (state) => {
@@ -27,6 +28,7 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onRandomGameClick: () => {
 			dispatch(toggleViewerLoading(true));
+			dispatch(toggleGameBoardLoading(true));
 
 			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions|title|text&grnlimit=2&uselang=user/', function (err, data) {
 				const keys = Object.keys(data.query.pages);
@@ -47,6 +49,7 @@ const mapDispatchToProps = (dispatch) => {
 					dispatch(getCurrentPage(name0, newLinks));
 					dispatch(getViewer(name0, text));
 					dispatch(toggleViewerLoading(false));
+					dispatch(toggleGameBoardLoading(false));
 				});
 			});
 		}

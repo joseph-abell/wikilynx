@@ -31,7 +31,7 @@ class GameBoard extends Component {
 						</ul>
 					</div>
 				</div> }
-				{ gameBoardLoading && !isCompleted && <div style={style}>
+				{ links[0] && gameBoardLoading && !isCompleted && <div style={style}>
 					Loading...
 				</div>}
 			</div>
