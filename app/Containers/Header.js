@@ -12,6 +12,7 @@ import {
 	addBreadcrumb, 
 	toggleViewerLoading,
 	toggleGameBoardLoading,
+	completeGame
 } from '../Actions';
 
 const mapStateToProps = (state) => {
@@ -50,6 +51,7 @@ const mapDispatchToProps = (dispatch) => {
 					dispatch(getViewer(name0, text));
 					dispatch(toggleViewerLoading(false));
 					dispatch(toggleGameBoardLoading(false));
+					dispatch(completeGame(false));
 				});
 			});
 		}
