@@ -8,6 +8,7 @@ export const RESET_BREADCRUMB = "RESET_BREADCRUMB";
 export const COMPLETE_GAME = "COMPLETE_GAME";
 export const TOGGLE_VIEWER_LOADING = "TOGGLE_VIEWER_LOADING";
 export const TOGGLE_GAME_BOARD_LOADING = "TOGGLE_GAME_BOARD_LOADING";
+export const TOGGLE_NEW_GAME = "TOGGLE_NEW_GAME";
 
 
 export function togglePlayerReady (playerReady) {
@@ -82,5 +83,12 @@ export function toggleGameBoardLoading (loading) {
 	return {
 		type: TOGGLE_GAME_BOARD_LOADING,
 		gameBoardLoading: loading
+	};
+}
+
+export function toggleNewGame (newGame) {
+	return {
+		type: TOGGLE_NEW_GAME,
+		newGame: newGame
 	};
 }

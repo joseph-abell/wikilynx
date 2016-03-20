@@ -1,3 +1,5 @@
+import { resetBreadcrumb, getFirstPage, getLastPage, getCurrentPage, getViewer, completeGame, addBreadcrumb, toggleGameBoardLoading, toggleViewerLoading, toggleNewGame } from '../Actions';
+
 export const cleanLinks = (links) => {
 	let newLinks = [];
 	for (var i = 0; i < links.length; i++) {
@@ -18,4 +20,16 @@ export const cleanText = (text) => {
 	text = text.replace(/<span class="mw-editsection">[\s\S]*?edit[\s\S]*?<\/span>/g, '');
 	text = text.replace(/class=\"[\s\S]*?\"/g, '');
 	return text;
+};
+
+export const resetGame = (dispatch) => {
+	dispatch(toggleViewerLoading(true));
+	dispatch(toggleGameBoardLoading(true));
+	dispatch(toggleNewGame(true));
+	dispatch(completeGame(false));
+	dispatch(resetBreadcrumb());
+	dispatch(getFirstPage(''));
+	dispatch(getLastPage(''));
+	dispatch(getCurrentPage('', []));
+	dispatch(getViewer('', ''));
 };

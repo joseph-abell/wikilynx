@@ -1,6 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 
-class CompletedGameOverlay extends Component {
+class CompletedGame extends Component {
 	render () {
 		let { isCompleted, breadcrumbs, onRetryClick, onResetClick, firstTitle, lastTitle } = this.props;
 		return (
@@ -23,7 +23,7 @@ class CompletedGameOverlay extends Component {
 	}
 }
 
-CompletedGameOverlay.propTypes = {
+CompletedGame.propTypes = {
 	isCompleted: PropTypes.bool.isRequired,
 	breadcrumbs: PropTypes.array.isRequired,
 	onRetryClick: PropTypes.func.isRequired,
@@ -32,4 +32,4 @@ CompletedGameOverlay.propTypes = {
 	lastTitle: PropTypes.string.isRequired
 };
 
-export default CompletedGameOverlay;
+export default CompletedGame;

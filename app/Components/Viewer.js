@@ -15,7 +15,6 @@ class Viewer extends Component {
 			borderRadius: 6,
 			padding: 30
 		};
-
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
 				{title && !isCompleted && !viewerLoading && <div style={style}>
