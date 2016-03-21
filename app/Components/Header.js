@@ -12,7 +12,7 @@ class Header extends Component {
 						<span style={{display: 'inline-block', marginRight: 30}}>Wikilynx</span>
 					</h1>
 					<h2 style={{float: 'left', marginTop: 0}}>
-						<small>Get from{' '}
+						<small>
 							<span style={{color: '#000'}}>{firstTitle}</span>
 							{' '}
 							{!isCompleted && <ViewButton title={firstTitle} /> }
@@ -22,8 +22,6 @@ class Header extends Component {
 							<span style={{color: '#000'}}>{lastTitle}</span>
 							{' '}
 							{!isCompleted && <ViewButton title={lastTitle} />}
-							{' '}
-							in the fewest clicks.
 						</small>
 					</h2>
 					
