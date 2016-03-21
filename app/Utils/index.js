@@ -13,6 +13,7 @@ export const cleanLinks = (links) => {
 };
 
 export const cleanText = (text) => {
+	console.log(text);
 	text = text.replace(/style=\"[\s\S]*?\"/g, '');
 	text = text.replace(/\<a[\s\S]*?\>/g, '');
 	text = text.replace(/\<\/a\>/g, '');

@@ -34,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
 					let links = content0.parse.links;
 					let newLinks = cleanLinks(links);
 					let text = content0.parse.text['*'];
-
+					
 					text = cleanText(text);
 
 					dispatch(resetBreadcrumb());
@@ -55,6 +55,7 @@ const mapDispatchToProps = (dispatch) => {
 				let links = content.parse.links;
 				let newLinks = cleanLinks(links);
 				let text = content.parse.text['*'];
+				text = cleanText(text);
 
 				dispatch(resetBreadcrumb());
 				dispatch(addBreadcrumb(firstPage));
