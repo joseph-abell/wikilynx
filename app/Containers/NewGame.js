@@ -11,9 +11,47 @@ import {
 	getViewer, 
 	completeGame, 
 	addBreadcrumb,
-	toggleNewGame
+	toggleNewGame,
+	toggleNewGameLoading
 } from '../Actions';
-import { cleanText, cleanLinks } from '../Utils';
+
+import { cleanText, cleanLinks, dispatchNewGame } from '../Utils';
+
+const setupNewGame = (dispatch, firstPageName, lastPageName, isFullyRandomGame) => {
+	jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + firstPageName + '&prop=links|text', function (err, content) {
+		if (!content.parse) {
+			if (isFullyRandomGame) {
+				alert('Oops, something went wrong when trying to get the first page from Wikipedia. Please try again.');
+				dispatch(toggleNewGameLoading(false));
+				return false;
+			}
+
+			alert('The content for the First Page is incorrect. Please check your spelling, and try again.');
+			dispatch(toggleNewGameLoading(false));
+			return false;
+		}
+
+		let links = content.parse.links;
+		let newLinks = cleanLinks(links);
+		let text = content.parse.text['*'];
+		
+		text = cleanText(text);
+
+		if (isFullyRandomGame) {
+			dispatchNewGame(dispatch, firstPageName, lastPageName, newLinks, text);	
+		} else {
+			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + lastPageName + '&prop=text', function (lastPageError, lastPageContent) {
+				if (!lastPageContent.parse) {
+					alert('The content for the Last Page is incorrect. Please check your spelling, and try again.');
+					dispatch(toggleNewGameLoading(false));
+					return false;				
+				}
+
+				dispatchNewGame(dispatch, firstPageName, lastPageName, newLinks, text);
+			});
+		}
+	});
+};
 
 const mapStateToProps = (state) => {
 	return state;
@@ -22,52 +60,36 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onRandomGameClick: () => {
+			dispatch(toggleNewGameLoading(true));
 			dispatch(toggleViewerLoading(true));
 			dispatch(toggleGameBoardLoading(true));
 
-			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=revisions|title|text&grnlimit=2&uselang=user/', function (err, data) {
+			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=title&grnlimit=2&uselang=user/', function (err, data) {
 				const keys = Object.keys(data.query.pages);
 				const name0 = data.query.pages[keys[0]].title;
 				const name1 = data.query.pages[keys[1]].title;
-				
-				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + name0 + '&prop=links|text', function (err, content0) {
-					let links = content0.parse.links;
-					let newLinks = cleanLinks(links);
-					let text = content0.parse.text['*'];
-					
-					text = cleanText(text);
-
-					dispatch(resetBreadcrumb());
-					dispatch(addBreadcrumb(name0));
-					dispatch(getFirstPage(name0));
-					dispatch(getLastPage(name1));
-					dispatch(getCurrentPage(name0, newLinks));
-					dispatch(getViewer(name0, text));
-					dispatch(toggleViewerLoading(false));
-					dispatch(toggleGameBoardLoading(false));
-					dispatch(completeGame(false));
-					dispatch(toggleNewGame(false));
-				});
+				setupNewGame(dispatch, name0, name1, true);
 			});	
 		},
-		onCustomGameClick: (firstPage, lastPage) => {
-			jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + firstPage + '&prop=links|text', function (err, content) {
-				let links = content.parse.links;
-				let newLinks = cleanLinks(links);
-				let text = content.parse.text['*'];
-				text = cleanText(text);
-
-				dispatch(resetBreadcrumb());
-				dispatch(addBreadcrumb(firstPage));
-				dispatch(getFirstPage(firstPage));
-				dispatch(getLastPage(lastPage));
-				dispatch(getCurrentPage(firstPage, newLinks));
-				dispatch(getViewer(firstPage, text));
-				dispatch(toggleViewerLoading(false));
-				dispatch(toggleGameBoardLoading(false));
-				dispatch(completeGame(false));
-				dispatch(toggleNewGame(false));
-			});
+		onCustomGameClick: (firstPage = '', lastPage = '') => {
+			dispatch(toggleNewGameLoading(true));
+			if ((firstPage === '') && (lastPage === '')) {
+				mapDispatchToProps(dispatch).onRandomGameClick();
+			} else if (firstPage === '') {
+				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=title&grnlimit=1&uselang=user/', function (err, data) {
+					const keys = Object.keys(data.query.pages);
+					firstPage = data.query.pages[keys[0]].title;
+					setupNewGame(dispatch, firstPage, lastPage, false);
+				});
+			} else if (lastPage === '') {
+				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=query&generator=random&grnnamespace=0&prop=title&grnlimit=1&uselang=user/', function (err, data) {
+					const keys = Object.keys(data.query.pages);
+					lastPage = data.query.pages[keys[0]].title;
+					setupNewGame(dispatch, firstPage, lastPage, false);
+				});
+			} else {
+				setupNewGame(dispatch, firstPage, lastPage, content, false);
+			}
 		}
 	};
 };

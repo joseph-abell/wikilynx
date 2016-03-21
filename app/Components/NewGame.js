@@ -2,12 +2,12 @@ import React, { Component, PropTypes } from 'react';
 
 class NewGame extends Component {
 	render () {
-		let { onRandomGameClick, onCustomGameClick, newGame } = this.props;
+		let { onRandomGameClick, onCustomGameClick, newGame, newGameLoading } = this.props;
 		return (
 			<div>
-				{newGame && <div>
-					<div className="col-md-6" style={{marginBottom: 20}}>
-						<h1>Create a Game</h1>
+				{newGame && !newGameLoading && <div>
+					<div className="col-md-6" style={{marginBottom: 20, marginTop: -40}}>
+						<h2 style={{marginTop: 0}}>Create a Game</h2>
 						<p>Add a wikipedia page title into the following inputs.</p>
 						<div>
 							<div className="form-group">
@@ -29,14 +29,18 @@ class NewGame extends Component {
 							</button>
 						</div>
 					</div>
-					<div className="col-md-6" style={{marginBottom: 20}}>
-						<h1>Play a Random Game</h1>
+					<div className="col-md-6" style={{marginBottom: 20, marginTop: -40}}>
+						<h2 style={{marginTop: 0}}>Play a Random Game</h2>
 						<button className="btn btn-default" onClick={() => {
 							onRandomGameClick();
 						}}>
 							Random Game
 						</button>
 					</div>
+				</div> }
+
+				{newGame && newGameLoading && <div className="col-md-12" style={{marginTop: -40}}>
+					<h1>Fetching pages from Wikipedia...</h1>
 				</div> }
 			</div>
 		);
@@ -46,7 +50,8 @@ class NewGame extends Component {
 NewGame.propTypes = {
 	onRandomGameClick: PropTypes.func.isRequired,
 	onCustomGameClick: PropTypes.func.isRequired,
-	newGame: PropTypes.bool.isRequired
+	newGame: PropTypes.bool.isRequired,
+	newGameLoading: PropTypes.bool.isRequired
 }
 
 export default NewGame;

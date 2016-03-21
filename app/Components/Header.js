@@ -20,6 +20,7 @@ class Header extends Component {
 							to
 							{' '}
 							<span style={{color: '#000'}}>{lastTitle}</span>
+							{' '}
 							{!isCompleted && <ViewButton title={lastTitle} />}
 							{' '}
 							in the fewest clicks.

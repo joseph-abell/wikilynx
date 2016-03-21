@@ -9,7 +9,8 @@ import {
 	RESET_BREADCRUMB,
 	TOGGLE_VIEWER_LOADING,
 	TOGGLE_GAME_BOARD_LOADING,
-	TOGGLE_NEW_GAME
+	TOGGLE_NEW_GAME,
+	TOGGLE_NEW_GAME_LOADING
 } from '../Actions';
 
 const firstPage = (state = '', action) => {
@@ -108,6 +109,15 @@ const newGame = (state = true, action) => {
 	}
 };
 
+const newGameLoading = (state = false, action) => {
+	switch (action.type) {
+		case TOGGLE_NEW_GAME_LOADING:
+			return action.newGameLoading;
+		default:
+			return state;
+	}
+};
+
 const gameApp = combineReducers({
 	viewer, 
 	firstPage, 
@@ -117,7 +127,8 @@ const gameApp = combineReducers({
 	completeGame, 
 	viewerLoading, 
 	gameBoardLoading,
-	newGame
+	newGame,
+	newGameLoading
 });
 
 export default gameApp;

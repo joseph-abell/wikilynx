@@ -9,6 +9,7 @@ export const COMPLETE_GAME = "COMPLETE_GAME";
 export const TOGGLE_VIEWER_LOADING = "TOGGLE_VIEWER_LOADING";
 export const TOGGLE_GAME_BOARD_LOADING = "TOGGLE_GAME_BOARD_LOADING";
 export const TOGGLE_NEW_GAME = "TOGGLE_NEW_GAME";
+export const TOGGLE_NEW_GAME_LOADING = "TOGGLE_NEW_GAME_LOADING";
 
 
 export function togglePlayerReady (playerReady) {
@@ -90,5 +91,12 @@ export function toggleNewGame (newGame) {
 	return {
 		type: TOGGLE_NEW_GAME,
 		newGame: newGame
+	};
+}
+
+export function toggleNewGameLoading (newGameLoading) {
+	return {
+		type: TOGGLE_NEW_GAME_LOADING,
+		newGameLoading: newGameLoading
 	};
 }

@@ -14,12 +14,12 @@ let App = ({dispatch}) => {
 		<div className="container">
 			<Header />
 			<div className="row">
-				<Breadcrumbs />
-				<NewGame />
-			</div>
-			<div className="row">
 				<GameBoard />
 				<Viewer />
+			</div>
+			<div className="row">
+				<Breadcrumbs />
+				<NewGame />
 			</div>
 			<CompletedGame />
 		</div>

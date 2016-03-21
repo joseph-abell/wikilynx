@@ -16,8 +16,8 @@ class GameBoard extends Component {
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
 				{ links[0] && !isCompleted && !gameBoardLoading && !newGame && <div>
+					<h2 style={{marginTop: 0}}>Available Moves</h2>
 					<div style={style}>
-						<h3 style={{marginTop: 0}}>Available Moves</h3>
 						<ul style={{margin: 0, padding: 0}}>
 						{
 							links.map(function (link, index) {
@@ -31,8 +31,11 @@ class GameBoard extends Component {
 						</ul>
 					</div>
 				</div> }
-				{ links[0] && gameBoardLoading && !isCompleted && !newGame && <div style={style}>
-					Loading...
+				{ links[0] && gameBoardLoading && !isCompleted && !newGame && <div>
+					<h2 style={{marginTop: 0}}>Available Moves</h2>
+					<div style={style}>
+						Loading...
+					</div>
 				</div>}
 			</div>
 		);

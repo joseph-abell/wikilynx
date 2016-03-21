@@ -1,4 +1,4 @@
-import { resetBreadcrumb, getFirstPage, getLastPage, getCurrentPage, getViewer, completeGame, addBreadcrumb, toggleGameBoardLoading, toggleViewerLoading, toggleNewGame } from '../Actions';
+import { resetBreadcrumb, getFirstPage, getLastPage, getCurrentPage, getViewer, completeGame, addBreadcrumb, toggleGameBoardLoading, toggleViewerLoading, toggleNewGame, toggleNewGameLoading } from '../Actions';
 
 export const cleanLinks = (links) => {
 	let newLinks = [];
@@ -13,7 +13,6 @@ export const cleanLinks = (links) => {
 };
 
 export const cleanText = (text) => {
-	console.log(text);
 	text = text.replace(/style=\"[\s\S]*?\"/g, '');
 	text = text.replace(/\<a[\s\S]*?\>/g, '');
 	text = text.replace(/\<\/a\>/g, '');
@@ -33,4 +32,18 @@ export const resetGame = (dispatch) => {
 	dispatch(getLastPage(''));
 	dispatch(getCurrentPage('', []));
 	dispatch(getViewer('', ''));
+};
+
+export const dispatchNewGame = (dispatch, firstPageName, lastPageName, newLinks, text) => {
+	dispatch(resetBreadcrumb());
+	dispatch(addBreadcrumb(firstPageName));
+	dispatch(getFirstPage(firstPageName));
+	dispatch(getLastPage(lastPageName));
+	dispatch(getCurrentPage(firstPageName, newLinks));
+	dispatch(getViewer(firstPageName, text));
+	dispatch(toggleViewerLoading(false));
+	dispatch(toggleGameBoardLoading(false));
+	dispatch(completeGame(false));
+	dispatch(toggleNewGame(false));
+	dispatch(toggleNewGameLoading(false));
 };
