@@ -8,7 +8,7 @@ class NewGame extends Component {
 				{newGame && <div>
 					<div className="col-md-6" style={{marginBottom: 20}}>
 						<h1>Create a Game</h1>
-						<p>Add a wikipedia page title into the following inputs. If you leave any input blank, a random entry will be added.</p>
+						<p>Add a wikipedia page title into the following inputs.</p>
 						<div>
 							<div className="form-group">
 								<label forName="first-page">First Page</label>
@@ -17,7 +17,7 @@ class NewGame extends Component {
 								}} />
 							</div>
 							<div className="form-group">
-								<label forName="first-page">First Page</label>
+								<label forName="first-page">Last Page</label>
 								<input type="text" className="form-control" placeholder="Last Page" ref={node => {
 									this.lastPageInput = node;
 								}} />

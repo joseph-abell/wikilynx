@@ -50,8 +50,6 @@ class Header extends Component {
 					
 					<div style={{clear: 'both'}}></div>
 				</div>}
-				
-				
 			</div>
 		);
 	}
