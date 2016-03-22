@@ -18,10 +18,7 @@ let App = ({dispatch}) => {
 				<div className="row">
 					<GameBoard />
 					<Viewer />
-				</div>
-				<div className="row">
 					<CompletedGame />
-					<Breadcrumbs />
 					<NewGame />
 				</div>
 				

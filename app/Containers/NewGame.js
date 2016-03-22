@@ -88,7 +88,7 @@ const mapDispatchToProps = (dispatch) => {
 					setupNewGame(dispatch, firstPage, lastPage, false);
 				});
 			} else {
-				setupNewGame(dispatch, firstPage, lastPage, content, false);
+				setupNewGame(dispatch, firstPage, lastPage, false);
 			}
 		}
 	};

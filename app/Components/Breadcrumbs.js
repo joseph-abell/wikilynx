@@ -6,22 +6,20 @@ class Breadcrumbs extends Component {
 		let { breadcrumbs, isCompleted } = this.props;
 
 		const style = {
-			height: 200,
 			overflowY: 'auto',
 			backgroundColor: '#eee',
 			borderRadius: 6,
-			padding: 30
+			padding: 10
 		};
 
 		return (
-			<div className="col-md-12" style={{marginBottom: 20}}>
+			<div style={{marginBottom: 20}}>
 				{ isCompleted && breadcrumbs[0] && <div>
-					<h2 style={{marginTop: 0}}>Completed Moves</h2>
 					<div style={style}>
 						{
 							breadcrumbs.map(function (breadcrumb, index) {
 								return (
-									<div style={{marginBottom: 10, display: 'inline-block', paddingRight: 20}} key={index}>{breadcrumb.title} {!isCompleted && <div></div>}</div>
+									<div style={{lineHeight: '30px', height: 30, display: 'inline-block', paddingRight: 20}} key={index}>{breadcrumb.title}</div>
 								);
 							})
 						}

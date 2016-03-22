@@ -1,4 +1,5 @@
 import React, { PropTypes, Component } from 'react';
+import Breadcrumbs from '../Containers/Breadcrumbs';
 
 class CompletedGame extends Component {
 	render () {
@@ -8,6 +9,7 @@ class CompletedGame extends Component {
 				{ isCompleted && <div>
 					<h1>Congratulations</h1>
 					<p>You completed the chain.</p>
+					<Breadcrumbs />
 					<p>
 						<button className='btn btn-default' onClick={() => {
 							onRetryClick(firstTitle, lastTitle);
