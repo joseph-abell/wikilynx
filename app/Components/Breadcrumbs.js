@@ -15,13 +15,13 @@ class Breadcrumbs extends Component {
 
 		return (
 			<div className="col-md-12" style={{marginBottom: 20}}>
-				{ breadcrumbs[0] && <div>
+				{ isCompleted && breadcrumbs[0] && <div>
 					<h2 style={{marginTop: 0}}>Completed Moves</h2>
 					<div style={style}>
 						{
 							breadcrumbs.map(function (breadcrumb, index) {
 								return (
-									<div style={{marginBottom: 10, display: 'inline-block', paddingRight: 20}} key={index}>{breadcrumb.title} {!isCompleted && <div><ViewButton title={breadcrumb.title} /></div>}</div>
+									<div style={{marginBottom: 10, display: 'inline-block', paddingRight: 20}} key={index}>{breadcrumb.title} {!isCompleted && <div></div>}</div>
 								);
 							})
 						}

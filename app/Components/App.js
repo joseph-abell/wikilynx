@@ -20,10 +20,11 @@ let App = ({dispatch}) => {
 					<Viewer />
 				</div>
 				<div className="row">
+					<CompletedGame />
 					<Breadcrumbs />
 					<NewGame />
 				</div>
-				<CompletedGame />
+				
 			</div>
 			<div className="container">
 				<Footer />
