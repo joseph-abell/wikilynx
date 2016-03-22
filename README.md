@@ -1,4 +1,5 @@
 # wikilynx
+[![Coverage Status](https://coveralls.io/repos/github/gerbilsinspace/wikilynx/badge.svg?branch=master)](https://coveralls.io/github/gerbilsinspace/wikilynx?branch=master)
 Wikilynx will be a game abount making the fewest links between wikipedia pages. Eventually, when it is 'done', It will act as a tutorial on how to create a small but fully structured React app.
 
 The app uses webpack for the build process. 
