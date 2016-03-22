@@ -1,4 +1,16 @@
-import { resetBreadcrumb, getFirstPage, getLastPage, getCurrentPage, getViewer, completeGame, addBreadcrumb, toggleGameBoardLoading, toggleViewerLoading, toggleNewGame, toggleNewGameLoading } from '../Actions';
+import { 
+	resetBreadcrumb, 
+	getFirstPage, 
+	getLastPage, 
+	getCurrentPage, 
+	getViewer, 
+	completeGame, 
+	addBreadcrumb, 
+	toggleGameBoardLoading, 
+	toggleViewerLoading, 
+	toggleNewGame, 
+	toggleNewGameLoading 
+} from '../Actions';
 
 export const cleanLinks = (links) => {
 	let newLinks = [];
