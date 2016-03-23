@@ -513,6 +513,308 @@ describe('reducers', () => {
 				},
 				viewerLoading: false
 			}
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('completeGame', () => {
+		it('should set the completeGame flag to true', () => {
+			const actual = gameApp(stateBefore(), {
+				type: COMPLETE_GAME,
+				isCompleted: true
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: true
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the completeGame flag to false.', () => {
+			const actual = gameApp(stateBefore(), {
+				type: COMPLETE_GAME,
+				isCompleted: false
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('viewerLoading', () => {
+		it('should set the viewerLoading flag to true', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_VIEWER_LOADING,
+				viewerLoading: true
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: true
+			}
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the viewerLoading flag to false.', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_VIEWER_LOADING,
+				viewerLoading: false
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('gameBoardLoading', () => {
+		it('should set the gameBoardLoading flag to true', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_GAME_BOARD_LOADING,
+				gameBoardLoading: true
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: true,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the gameBoardLoading flag to false.', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_GAME_BOARD_LOADING,
+				gameBoardLoading: false
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('newGame', () => {
+		it('should set the newGame flag to true', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_NEW_GAME,
+				newGame: true
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the newGame flag to false.', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_NEW_GAME,
+				newGame: false
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: false,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('newGameLoading', () => {
+		it('should set the newGameLoading flag to true', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_NEW_GAME_LOADING,
+				newGameLoading: true
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: true,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the newGameLoading flag to false.', () => {
+			const actual = gameApp(stateBefore(), {
+				type: TOGGLE_NEW_GAME_LOADING,
+				newGameLoading: false
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: {
+					isCompleted: false
+				},
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			}
+
+			expect(actual).toEqual(expected);
 		});
 	});
 });
