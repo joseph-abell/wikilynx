@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
 	return {
 		title: state.viewer.title, 
 		content: state.viewer.content,
-		isCompleted: state.completeGame.isCompleted,
+		completeGame: state.completeGame,
 		viewerLoading: state.viewerLoading
 	};
 };

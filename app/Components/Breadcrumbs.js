@@ -3,7 +3,7 @@ import ViewButton from '../Containers/ViewButton';
 
 class Breadcrumbs extends Component {
 	render () {
-		let { breadcrumbs, isCompleted } = this.props;
+		let { breadcrumbs, completeGame } = this.props;
 
 		const style = {
 			overflowY: 'auto',
@@ -14,7 +14,7 @@ class Breadcrumbs extends Component {
 
 		return (
 			<div style={{marginBottom: 20}}>
-				{ isCompleted && breadcrumbs[0] && <div>
+				{ completeGame && breadcrumbs[0] && <div>
 					<div style={style}>
 						{
 							breadcrumbs.map(function (breadcrumb, index) {
@@ -32,7 +32,7 @@ class Breadcrumbs extends Component {
 
 Breadcrumbs.propTypes = {
 	breadcrumbs: PropTypes.array.isRequired,
-	isCompleted: PropTypes.bool.isRequired
+	completeGame: PropTypes.bool.isRequired
 };
 
 export default Breadcrumbs;

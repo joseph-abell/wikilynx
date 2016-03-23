@@ -6,7 +6,7 @@ const mapStateToProps = (state) => {
 		firstTitle: state.firstPage,
 		lastTitle: state.lastPage,
 		links: state.currentPage.links,
-		isCompleted: state.completeGame.isCompleted,
+		completeGame: state.completeGame,
 		gameBoardLoading: state.gameBoardLoading
 	};
 };

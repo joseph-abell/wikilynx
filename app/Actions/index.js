@@ -66,10 +66,10 @@ export function resetBreadcrumb () {
 	};
 }
 
-export function completeGame (isCompleted) {
+export function completeGame (completeGame) {
 	return {
 		type: COMPLETE_GAME,
-		isCompleted: isCompleted
+		completeGame: completeGame
 	};
 }
 

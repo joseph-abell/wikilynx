@@ -71,12 +71,10 @@ const breadcrumbs = (state = [], action) => {
 	}
 };
 
-const completeGame = (state = {isCompleted: false}, action) => {
+const completeGame = (state = false, action) => {
 	switch (action.type) {
 		case COMPLETE_GAME:
-			return {
-				isCompleted: action.isCompleted
-			};
+			return action.completeGame;
 		default:
 			return state;
 	}

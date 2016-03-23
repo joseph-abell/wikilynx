@@ -21,7 +21,7 @@ const mapStateToProps = (state) => {
 		content: state.viewer.content,
 		firstTitle: state.firstPage,
 		lastTitle: state.lastPage,
-		isCompleted: state.completeGame.isCompleted,
+		completeGame: state.completeGame,
 		newGame: state.newGame
 	};
 };

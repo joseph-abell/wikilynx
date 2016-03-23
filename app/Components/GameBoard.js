@@ -3,7 +3,7 @@ import Link from '../Containers/Link';
 
 class GameBoard extends Component {
 	render () {
-		let { isCompleted, links, gameBoardLoading, newGame } = this.props;
+		let { completeGame, links, gameBoardLoading, newGame } = this.props;
 		
 		const style = {
 			height: 400,
@@ -15,7 +15,7 @@ class GameBoard extends Component {
 
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
-				{ links[0] && !isCompleted && !gameBoardLoading && !newGame && <div>
+				{ links[0] && !completeGame && !gameBoardLoading && !newGame && <div>
 					<h2 style={{marginTop: 0}}>Available Moves</h2>
 					<div style={style}>
 						<ul style={{margin: 0, padding: 0}}>
@@ -31,7 +31,7 @@ class GameBoard extends Component {
 						</ul>
 					</div>
 				</div> }
-				{ links[0] && gameBoardLoading && !isCompleted && !newGame && <div>
+				{ links[0] && gameBoardLoading && !completeGame && !newGame && <div>
 					<h2 style={{marginTop: 0}}>Available Moves</h2>
 					<div style={style}>
 						Loading...
@@ -44,7 +44,7 @@ class GameBoard extends Component {
 
 GameBoard.propTypes = {
 	links: PropTypes.array.isRequired,
-	isCompleted: PropTypes.bool.isRequired
+	completeGame: PropTypes.bool.isRequired
 };
 
 export default GameBoard;

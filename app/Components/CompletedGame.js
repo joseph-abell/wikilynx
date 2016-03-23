@@ -3,10 +3,10 @@ import Breadcrumbs from '../Containers/Breadcrumbs';
 
 class CompletedGame extends Component {
 	render () {
-		let { isCompleted, breadcrumbs, onRetryClick, onResetClick, firstTitle, lastTitle } = this.props;
+		let { completeGame, breadcrumbs, onRetryClick, onResetClick, firstTitle, lastTitle } = this.props;
 		return (
 			<div>
-				{ isCompleted && <div>
+				{ completeGame && <div>
 					<h1>Congratulations</h1>
 					<p>You completed the chain.</p>
 					<Breadcrumbs />
@@ -26,7 +26,7 @@ class CompletedGame extends Component {
 }
 
 CompletedGame.propTypes = {
-	isCompleted: PropTypes.bool.isRequired,
+	completeGame: PropTypes.bool.isRequired,
 	breadcrumbs: PropTypes.array.isRequired,
 	onRetryClick: PropTypes.func.isRequired,
 	onResetClick: PropTypes.func.isRequired,

@@ -6,7 +6,7 @@ import { cleanLinks, cleanText, resetGame } from '../Utils';
 
 const mapStateToProps = (state) => {
 	return {
-		isCompleted: state.completeGame.isCompleted,
+		completeGame: state.completeGame,
 		breadcrumbs: state.breadcrumbs,
 		firstTitle: state.firstPage,
 		lastTitle: state.lastPage

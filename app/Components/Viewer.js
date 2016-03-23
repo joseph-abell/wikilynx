@@ -2,7 +2,7 @@ import React, { PropTypes, Component } from 'react';
 
 class Viewer extends Component {
 	render () {
-		let { title, content, isCompleted, viewerLoading } = this.props;
+		let { title, content, completeGame, viewerLoading } = this.props;
 
 		function rawHtml() {
 			return { __html: content};
@@ -17,7 +17,7 @@ class Viewer extends Component {
 		};
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
-				{title && !isCompleted && !viewerLoading && <div>
+				{title && !completeGame && !viewerLoading && <div>
 					<h2 style={{marginTop: 0}}>View Article</h2>
 					<div style={style}>
 						<h3 style={{marginTop: 0}}>{title}</h3>
@@ -25,7 +25,7 @@ class Viewer extends Component {
 					</div>
 				</div> }
 
-				{ title && !isCompleted && viewerLoading && <div>
+				{ title && !completeGame && viewerLoading && <div>
 					<h2 style={{marginTop: 0}}>View Article</h2>
 					<div style={style}>
 						Loading...
@@ -39,7 +39,7 @@ class Viewer extends Component {
 Viewer.propTypes = {
 	title: PropTypes.string.isRequired,
 	content: PropTypes.string.isRequired,
-	isCompleted: PropTypes.bool.isRequired,
+	completeGame: PropTypes.bool.isRequired,
 	viewerLoading: PropTypes.bool.isRequired
 };
 

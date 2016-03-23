@@ -31,9 +31,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -66,9 +64,7 @@ describe('reducers', () => {
 
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -98,9 +94,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -133,9 +127,7 @@ describe('reducers', () => {
 
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -168,9 +160,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: 'Virtual Reality'
@@ -201,9 +191,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: ['Adele', 'Fun.', 'The Streets'],
 					title: 'The Streets'
@@ -242,9 +230,7 @@ describe('reducers', () => {
 
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -277,9 +263,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -310,9 +294,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -351,9 +333,7 @@ describe('reducers', () => {
 
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -387,9 +367,7 @@ describe('reducers', () => {
 						title: 'Archery'
 					}
 				],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -427,9 +405,7 @@ describe('reducers', () => {
 
 			const expected = {
 				breadcrumbs: ['First Person Shooter', 'The Matrix', 'Netflix'],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -466,9 +442,7 @@ describe('reducers', () => {
 			
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -495,9 +469,7 @@ describe('reducers', () => {
 
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -522,13 +494,11 @@ describe('reducers', () => {
 		it('should set the completeGame flag to true', () => {
 			const actual = gameApp(stateBefore(), {
 				type: COMPLETE_GAME,
-				isCompleted: true
+				completeGame: true
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: true
-				},
+				completeGame: true,
 				currentPage: {
 					links: [],
 					title: ''
@@ -551,13 +521,11 @@ describe('reducers', () => {
 		it('should set the completeGame flag to false.', () => {
 			const actual = gameApp(stateBefore(), {
 				type: COMPLETE_GAME,
-				isCompleted: false
+				completeGame: false
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -586,9 +554,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -615,9 +581,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -646,9 +610,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -675,9 +637,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -706,9 +666,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -735,9 +693,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -766,9 +722,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''
@@ -795,9 +749,7 @@ describe('reducers', () => {
 			});
 			const expected = {
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				currentPage: {
 					links: [],
 					title: ''

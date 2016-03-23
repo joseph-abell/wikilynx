@@ -34,9 +34,7 @@ describe('store', () => {
 					links: []
 				},
 				breadcrumbs: [],
-				completeGame: {
-					isCompleted: false
-				},
+				completeGame: false,
 				viewerLoading: false,
 				gameBoardLoading: false,
 				newGame: true,
@@ -194,7 +192,7 @@ describe('store', () => {
 			const actual = store.dispatch(completeGame(true));
 			const expected = {
 				type: 'COMPLETE_GAME',
-				isCompleted: true
+				completeGame: true
 			}
 
 			expect(actual).toEqual(expected);
@@ -204,7 +202,7 @@ describe('store', () => {
 			const actual = store.dispatch(completeGame(false));
 			const expected = {
 				type: 'COMPLETE_GAME',
-				isCompleted: false
+				completeGame: false
 			};
 
 			expect(actual).toEqual(expected);
