@@ -8,31 +8,30 @@ class Header extends Component {
 		return (
 			<div className="page-header">
 				{lastTitle && <div>
-					<h1>
+					{ newGame && <h1>
 						<span style={{display: 'inline-block', marginRight: 30}}>Wikilynx</span>
-					</h1>
-					<h2 style={{float: 'left', marginTop: 0}}>
-						<small>
-							<span style={{color: '#000'}}>{firstTitle}</span>
-							{' '}
-							{!completeGame && <ViewButton title={firstTitle} /> }
-							{' '}
-							to
-							{' '}
-							<span style={{color: '#000'}}>{lastTitle}</span>
-							{' '}
-							{!completeGame && <ViewButton title={lastTitle} />}
-						</small>
+					</h1> }
+					<h2 style={{marginTop: 0}}>
+						<span style={{color: '#000'}}>{firstTitle}</span>
+						{' '}
+						{!completeGame && <ViewButton title={firstTitle} /> }
+						{' '}
+						to
+						{' '}
+						<span style={{color: '#000'}}>{lastTitle}</span>
+						{' '}
+						{!completeGame && <ViewButton title={lastTitle} />}
+						{!newGame && <button className="btn btn-default" style={{float: 'right', display: 'block', marginTop: 0, marginLeft: 10 }} onClick={() => {
+							onRetryGameClick(firstTitle, lastTitle);	
+						}}>Retry</button> }
+						{!newGame && <button className="btn btn-primary" style={{float: 'right', display: 'block', marginTop: 0}} onClick={() => {
+							onRandomGameClick();	
+						}}>New Game</button> }
+						
+						<div style={{clear: 'both'}}></div>
 					</h2>
 					
-					{!newGame && <button className="btn btn-default" style={{float: 'right', display: 'block', marginTop: 0, marginLeft: 10 }} onClick={() => {
-						onRetryGameClick(firstTitle, lastTitle);	
-					}}>Retry</button> }
-					{!newGame && <button className="btn" style={{float: 'right', display: 'block', marginTop: 0, backgroundColor: '#CBE86B', color: '#fff'}} onClick={() => {
-						onRandomGameClick();	
-					}}>New Game</button> }
 					
-					<div style={{clear: 'both'}}></div>
 				</div>}
 				{!lastTitle && <div>
 					<h1>

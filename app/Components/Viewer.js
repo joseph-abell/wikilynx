@@ -18,7 +18,7 @@ class Viewer extends Component {
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
 				{title && !completeGame && !viewerLoading && <div>
-					<h2 style={{marginTop: 0}}>View Article</h2>
+					<h2 style={{marginTop: 0}}>Preview</h2>
 					<div style={style}>
 						<h3 style={{marginTop: 0}}>{title}</h3>
 						<div dangerouslySetInnerHTML={rawHtml()} />

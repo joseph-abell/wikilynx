@@ -7,7 +7,7 @@ class LinkButton extends Component {
 			<button className="btn btn-primary" style={{marginRight:10}} onClick={()=>{
 				onLinkClick(title, lastPage, breadcrumbs);
 			}}>
-				<span className="glyphicon glyphicon-ok"></span> Set as Link
+				<span className="glyphicon glyphicon-ok"></span> Select
 			</button>
 		);
 	}
