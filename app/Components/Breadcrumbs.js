@@ -5,21 +5,20 @@ class Breadcrumbs extends Component {
 	render () {
 		let { breadcrumbs, completeGame } = this.props;
 
-		const style = {
-			overflowY: 'auto',
-			backgroundColor: '#eee',
-			borderRadius: 6,
-			padding: 10
-		};
-
 		return (
-			<div style={{marginBottom: 20}}>
-				{ completeGame && breadcrumbs[0] && <div>
-					<div style={style}>
+			<div style={{marginBottom: 40}} className='col-md-12'>
+				{ breadcrumbs[0] && <div>
+					<h3>Your Moves</h3>
+					<div>
 						{
 							breadcrumbs.map(function (breadcrumb, index) {
 								return (
-									<div style={{lineHeight: '30px', height: 30, display: 'inline-block', paddingRight: 20}} key={index}>{breadcrumb.title}</div>
+									<div style={{lineHeight: '30px', height: 30, float: 'left', paddingRight: 20}} key={index}>{breadcrumb.title}
+										{' '}
+										{!completeGame && index == (breadcrumbs.length - 1) && <div style={{float: 'right', marginLeft: 5, marginRight: 10}}>
+											<ViewButton title={breadcrumb.title} />
+										</div>}
+									</div>
 								);
 							})
 						}

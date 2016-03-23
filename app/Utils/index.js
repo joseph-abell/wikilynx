@@ -10,7 +10,8 @@ import {
 	toggleGameBoardLoading, 
 	toggleViewerLoading, 
 	toggleNewGame, 
-	toggleNewGameLoading 
+	toggleNewGameLoading,
+	getFilter
 } from '../Actions';
 
 export const cleanLinks = (links) => {
@@ -45,6 +46,7 @@ export const resetGame = (dispatch) => {
 	dispatch(getLastPage(''));
 	dispatch(getCurrentPage('', []));
 	dispatch(getViewer('', ''));
+	dispatch(getFilter(''));
 };
 
 export const retryGame = (dispatch, firstTitle, lastTitle) => {
@@ -62,6 +64,7 @@ export const retryGame = (dispatch, firstTitle, lastTitle) => {
 		dispatch(getLastPage(lastTitle));
 		dispatch(getCurrentPage(firstTitle, links));
 		dispatch(getViewer(firstTitle, text));
+		dispatch(getFilter(''));
 		
 		dispatch(toggleViewerLoading(false));
 		dispatch(toggleGameBoardLoading(false));
@@ -80,4 +83,5 @@ export const dispatchNewGame = (dispatch, firstPageName, lastPageName, newLinks,
 	dispatch(completeGame(false));
 	dispatch(toggleNewGame(false));
 	dispatch(toggleNewGameLoading(false));
+	dispatch(getFilter(''));
 };

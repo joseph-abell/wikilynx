@@ -5,11 +5,10 @@ class CompletedGame extends Component {
 	render () {
 		let { completeGame, breadcrumbs, onRetryClick, onResetClick, firstTitle, lastTitle } = this.props;
 		return (
-			<div>
+			<div className="col-md-12">
 				{ completeGame && <div>
 					<h1>Congratulations</h1>
 					<p>You completed the chain.</p>
-					<Breadcrumbs />
 					<p>
 						<button className='btn btn-default' onClick={() => {
 							onRetryClick(firstTitle, lastTitle);
