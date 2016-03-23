@@ -1,3 +1,4 @@
+import jsonp from 'jsonp';
 import { 
 	resetBreadcrumb, 
 	getFirstPage, 
@@ -44,6 +45,27 @@ export const resetGame = (dispatch) => {
 	dispatch(getLastPage(''));
 	dispatch(getCurrentPage('', []));
 	dispatch(getViewer('', ''));
+};
+
+export const retryGame = (dispatch, firstTitle, lastTitle) => {
+	dispatch(toggleViewerLoading(true));
+	dispatch(toggleGameBoardLoading(true));
+	dispatch(completeGame(false));
+	jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + firstTitle + '&prop=links|text', function (err, content0) {
+		let links = content0.parse.links;
+		links = cleanLinks(links);
+
+		let text = content0.parse.text['*'];
+		dispatch(resetBreadcrumb());
+		dispatch(addBreadcrumb(firstTitle));
+		dispatch(getFirstPage(firstTitle));
+		dispatch(getLastPage(lastTitle));
+		dispatch(getCurrentPage(firstTitle, links));
+		dispatch(getViewer(firstTitle, text));
+		
+		dispatch(toggleViewerLoading(false));
+		dispatch(toggleGameBoardLoading(false));
+	});
 };
 
 export const dispatchNewGame = (dispatch, firstPageName, lastPageName, newLinks, text) => {

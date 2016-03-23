@@ -6,7 +6,7 @@ class NewGame extends Component {
 		return (
 			<div>
 				{newGame && !newGameLoading && <div>
-					<div className="col-md-6" style={{marginBottom: 20, marginTop: -40}}>
+					<div className="col-md-6" style={{marginBottom: 20, marginTop: -20}}>
 						<h2 style={{marginTop: 0}}>Create a Game</h2>
 						<p>Add a wikipedia page title into the following inputs.</p>
 						<div>
@@ -29,7 +29,7 @@ class NewGame extends Component {
 							</button>
 						</div>
 					</div>
-					<div className="col-md-6" style={{marginBottom: 20, marginTop: -40}}>
+					<div className="col-md-6" style={{marginBottom: 20, marginTop: -20}}>
 						<h2 style={{marginTop: 0}}>Play a Random Game</h2>
 						<button className="btn btn-default" onClick={() => {
 							onRandomGameClick();

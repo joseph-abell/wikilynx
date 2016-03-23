@@ -1,7 +1,7 @@
 import jsonp from 'jsonp';
 import { connect } from 'react-redux';
 import Header from '../Components/Header';
-import { cleanLinks, cleanText, resetGame } from '../Utils';
+import { cleanLinks, cleanText, resetGame, retryGame } from '../Utils';
 import { 
 	togglePlayerReady, 
 	getFirstPage, 
@@ -30,6 +30,9 @@ const mapDispatchToProps = (dispatch) => {
 	return {
 		onRandomGameClick: () => {
 			resetGame(dispatch);
+		},
+		onRetryGameClick: (firstPage, lastPage) => {
+			retryGame(dispatch, firstPage, lastPage);
 		}
 	};
 };

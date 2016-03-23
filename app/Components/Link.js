@@ -4,11 +4,11 @@ import LinkButton from '../Containers/LinkButton';
 
 class Link extends Component {
 	render () {
-		let { onLinkClick, title, lastPage, breadcrumbs, isCompleted } = this.props;
+		let { onLinkClick, title, lastPage, breadcrumbs, completeGame } = this.props;
 
 		return (
 			<div style={{marginBottom: 10}}>
-				{ !isCompleted && <div>
+				{ !completeGame && <div>
 					<a style={{display: 'block'}}>{title}</a>
 					<ViewButton title={title} />
 					<LinkButton title={title} lastPage={lastPage} breadcrumbs={breadcrumbs} />
@@ -23,7 +23,7 @@ Link.propTypes = {
 	lastPage: PropTypes.string.isRequired,
 	breadcrumbs: PropTypes.array.isRequired,
 	onLinkClick: PropTypes.func.isRequired,
-	isCompleted: PropTypes.bool.isRequired
+	completeGame: PropTypes.bool.isRequired
 };
 
 export default Link;

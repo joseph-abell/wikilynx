@@ -3,7 +3,7 @@ import ViewButton from '../Containers/ViewButton';
 
 class Header extends Component {
 	render () {
-		let { onRandomGameClick, firstTitle, lastTitle, completeGame, newGame } = this.props;
+		let { onRandomGameClick, onRetryGameClick, firstTitle, lastTitle, completeGame, newGame } = this.props;
 
 		return (
 			<div className="page-header">
@@ -25,11 +25,12 @@ class Header extends Component {
 						</small>
 					</h2>
 					
+					{!newGame && <button className="btn btn-default" style={{float: 'right', display: 'block', marginTop: 0, marginLeft: 10 }} onClick={() => {
+						onRetryGameClick(firstTitle, lastTitle);	
+					}}>Retry</button> }
 					{!newGame && <button className="btn" style={{float: 'right', display: 'block', marginTop: 0, backgroundColor: '#CBE86B', color: '#fff'}} onClick={() => {
-						onRandomGameClick()	
-					}}>
-						<h2 style={{margin: 0}}>New Game</h2>
-					</button> }
+						onRandomGameClick();	
+					}}>New Game</button> }
 					
 					<div style={{clear: 'both'}}></div>
 				</div>}
@@ -56,6 +57,7 @@ class Header extends Component {
 
 Header.propTypes = {
 	onRandomGameClick: PropTypes.func.isRequired,
+	onRetryGameClick: PropTypes.func.isRequired,
 	firstTitle: PropTypes.string.isRequired,
 	lastTitle: PropTypes.string.isRequired,
 	completeGame: PropTypes.bool.isRequired,
