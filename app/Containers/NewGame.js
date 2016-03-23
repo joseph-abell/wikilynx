@@ -54,7 +54,10 @@ const setupNewGame = (dispatch, firstPageName, lastPageName, isFullyRandomGame) 
 };
 
 const mapStateToProps = (state) => {
-	return state;
+	return {
+		newGame: state.newGame,
+		newGameLoading: state.newGameLoading
+	};
 };
 
 const mapDispatchToProps = (dispatch) => {
