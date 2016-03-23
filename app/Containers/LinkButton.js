@@ -1,7 +1,7 @@
 import jsonp from 'jsonp';
 import { connect } from 'react-redux';
 import LinkButton from '../Components/LinkButton';
-import { toggleGameBoardLoading, toggleViewerLoading, addBreadcrumb, completeGame, getViewer, getCurrentPage } from '../Actions';
+import { toggleGameBoardLoading, toggleViewerLoading, addBreadcrumb, completeGame, getViewer, getCurrentPage, getFilter } from '../Actions';
 import { cleanText, cleanLinks } from '../Utils';
 
 const mapStateToProps = (state) => {
@@ -32,6 +32,7 @@ const mapDispatchToProps = (dispatch) => {
 					dispatch(addBreadcrumb(title));
 					dispatch(getViewer(title, text));
 					dispatch(getCurrentPage(title, newLinks));
+					dispatch(getFilter(''));
 					dispatch(toggleGameBoardLoading(false));
 					dispatch(toggleViewerLoading(false));
 				});
