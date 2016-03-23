@@ -3,12 +3,13 @@ import { createStore } from 'redux';
 import gameApp from '../../app/Reducers';
 
 import { 
-	GET_FIRST_PAGE, 
-	GET_LAST_PAGE, 
-	GET_CURRENT_PAGE, 
-	GET_VIEWER,
 	ADD_BREADCRUMB,
 	COMPLETE_GAME,
+	GET_CURRENT_PAGE, 
+	GET_FIRST_PAGE,
+	GET_FILTER, 
+	GET_LAST_PAGE, 
+	GET_VIEWER,
 	RESET_BREADCRUMB,
 	TOGGLE_VIEWER_LOADING,
 	TOGGLE_GAME_BOARD_LOADING,
@@ -36,6 +37,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: 'John Wayne',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -69,6 +71,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -99,6 +102,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: 'Superman',
@@ -132,6 +136,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -165,6 +170,7 @@ describe('reducers', () => {
 					links: [],
 					title: 'Virtual Reality'
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -196,6 +202,7 @@ describe('reducers', () => {
 					links: ['Adele', 'Fun.', 'The Streets'],
 					title: 'The Streets'
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -235,6 +242,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -268,6 +276,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -299,6 +308,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -338,6 +348,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -372,6 +383,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -410,6 +422,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -447,6 +460,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -474,6 +488,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -503,6 +518,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -530,6 +546,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -559,6 +576,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -586,6 +604,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -615,6 +634,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: true,
 				lastPage: '',
@@ -642,6 +662,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -671,6 +692,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -698,6 +720,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -727,6 +750,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -754,6 +778,7 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
+				filter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -765,6 +790,68 @@ describe('reducers', () => {
 				},
 				viewerLoading: false
 			}
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('filter', () => {
+		it('should set the filter to David Bowie', () => {
+			const actual = gameApp(stateBefore(), {
+				type: GET_FILTER,
+				filter: 'David Bowie'
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: false,
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				filter: 'David Bowie',
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			};
+		});
+
+		it('should reset the filter to an empty string', () => {
+			const dirtyFilter = gameApp(stateBefore(), {
+				type: GET_FILTER,
+				filter: 'Hermione Granger'
+			});
+
+			const actual = gameApp(dirtyFilter, {
+				type: GET_FILTER,
+				filter: ''
+			});
+
+			const expected = {
+				breadcrumbs: [],
+				completeGame: false,
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				filter: '',
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			};
 
 			expect(actual).toEqual(expected);
 		});

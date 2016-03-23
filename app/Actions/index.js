@@ -3,6 +3,7 @@ export const GET_FIRST_PAGE = "GET_FIRST_PAGE";
 export const GET_LAST_PAGE = "GET_LAST_PAGE";
 export const GET_CURRENT_PAGE = "GET_CURRENT_PAGE";
 export const GET_VIEWER = "GET_VIEWER";
+export const GET_FILTER = "GET_FILTER";
 export const ADD_BREADCRUMB = "ADD_BREADCRUMB";
 export const RESET_BREADCRUMB = "RESET_BREADCRUMB";
 export const COMPLETE_GAME = "COMPLETE_GAME";
@@ -98,5 +99,12 @@ export function toggleNewGameLoading (newGameLoading) {
 	return {
 		type: TOGGLE_NEW_GAME_LOADING,
 		newGameLoading: newGameLoading
+	};
+}
+
+export function getFilter (filter) {
+	return {
+		type: GET_FILTER,
+		filter: filter
 	};
 }

@@ -1,9 +1,10 @@
 import React, { PropTypes, Component } from 'react';
 import Link from '../Containers/Link';
+import Filter from '../Containers/Filter';
 
 class GameBoard extends Component {
 	render () {
-		let { completeGame, links, gameBoardLoading, newGame } = this.props;
+		let { completeGame, links, gameBoardLoading, newGame, filter } = this.props;
 		
 		const style = {
 			height: 400,
@@ -16,14 +17,17 @@ class GameBoard extends Component {
 		return (
 			<div className="col-md-6" style={{marginBottom: 20}}>
 				{ links[0] && !completeGame && !gameBoardLoading && !newGame && <div>
-					<h2 style={{marginTop: 0}}>Available Moves</h2>
+					<h2 style={{marginTop: 0, float:'left'}}>Available Moves</h2>
+					<div style={{float: 'right', marginTop: 5}}><Filter /></div>
+					<div style={{clear: 'both'}}></div>
 					<div style={style}>
 						<ul style={{margin: 0, padding: 0}}>
 						{
 							links.map(function (link, index) {
 								return (
 									<li style={{listStyle: 'none'}} key={index}>
-										<Link title={link.title} />
+										{link.title.includes(filter) && <div><Link title={link.title} /></div>}
+										
 									</li>
 								);
 							})
@@ -44,7 +48,8 @@ class GameBoard extends Component {
 
 GameBoard.propTypes = {
 	links: PropTypes.array.isRequired,
-	completeGame: PropTypes.bool.isRequired
+	completeGame: PropTypes.bool.isRequired,
+	filter: PropTypes.string.isRequired
 };
 
 export default GameBoard;

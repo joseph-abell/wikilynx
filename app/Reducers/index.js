@@ -10,7 +10,8 @@ import {
 	TOGGLE_VIEWER_LOADING,
 	TOGGLE_GAME_BOARD_LOADING,
 	TOGGLE_NEW_GAME,
-	TOGGLE_NEW_GAME_LOADING
+	TOGGLE_NEW_GAME_LOADING,
+	GET_FILTER
 } from '../Actions';
 
 const firstPage = (state = '', action) => {
@@ -116,6 +117,15 @@ const newGameLoading = (state = false, action) => {
 	}
 };
 
+const filter = (state = '', action) => {
+	switch (action.type) {
+		case GET_FILTER:
+			return action.filter;
+		default:
+			return state;
+	}
+};
+
 const gameApp = combineReducers({
 	viewer, 
 	firstPage, 
@@ -126,7 +136,8 @@ const gameApp = combineReducers({
 	viewerLoading, 
 	gameBoardLoading,
 	newGame,
-	newGameLoading
+	newGameLoading,
+	filter
 });
 
 export default gameApp;

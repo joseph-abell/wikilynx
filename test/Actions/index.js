@@ -13,11 +13,12 @@ import {
 	toggleNewGame,
 	toggleViewerLoading,
 	toggleGameBoardLoading,
-	toggleNewGameLoading
+	toggleNewGameLoading,
+	getFilter
 } from '../../app/Actions';
 
 describe('actions', () => {
-describe('store', () => {
+	describe('store', () => {
 		let store = createStore(gameApp);
 
 		it('should get an initial state', () => {
@@ -27,6 +28,7 @@ describe('store', () => {
 					title: '',
 					content: ''
 				},
+				filter: '',
 				firstPage: '',
 				lastPage: '',
 				currentPage: {
@@ -298,6 +300,29 @@ describe('store', () => {
 			};
 
 			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('getFilter', () => {
+		let store = createStore(gameApp);
+		it('should set the filter to Rick Astley', () => {
+			const actual = store.dispatch(getFilter('Rick Astley'));
+			const expected = {
+				type: 'GET_FILTER',
+				filter: 'Rick Astley'
+			};
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the filter back to empty', () => {
+			const actual = store.dispatch(getFilter(''));
+			const expected = {
+				type: 'GET_FILTER',
+				filter: ''
+			};
+
+			expect(actual).toEqual(expected);		
 		});
 	});
 });

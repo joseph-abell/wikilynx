@@ -21,10 +21,10 @@ class Header extends Component {
 						<span style={{color: '#000'}}>{lastTitle}</span>
 						{' '}
 						{!completeGame && <ViewButton title={lastTitle} />}
-						{!newGame && <button className="btn btn-default" style={{float: 'right', display: 'block', marginTop: 0, marginLeft: 10 }} onClick={() => {
+						{!newGame && <button className="btn btn-default" style={{float: 'right', display: 'block', marginTop: 2, marginLeft: 10 }} onClick={() => {
 							onRetryGameClick(firstTitle, lastTitle);	
 						}}>Retry</button> }
-						{!newGame && <button className="btn btn-primary" style={{float: 'right', display: 'block', marginTop: 0}} onClick={() => {
+						{!newGame && <button className="btn btn-primary" style={{float: 'right', display: 'block', marginTop: 2}} onClick={() => {
 							onRandomGameClick();	
 						}}>New Game</button> }
 						
