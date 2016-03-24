@@ -24,10 +24,11 @@ class GameBoard extends Component {
 						<ul style={{margin: 0, padding: 0}}>
 						{
 							links.map(function (link, index) {
+								const lowerCaseLink = link.title.toLowerCase();
+								const lowerCaseFilter = filter.toLowerCase();
 								return (
 									<li style={{listStyle: 'none'}} key={index}>
-										{link.title.includes(filter) && <div><Link title={link.title} /></div>}
-										
+										{lowerCaseLink.includes(lowerCaseFilter) && <div><Link title={link.title} /></div>}
 									</li>
 								);
 							})
