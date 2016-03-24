@@ -26,7 +26,7 @@ class Viewer extends Component {
 				</div> }
 
 				{ title && !completeGame && viewerLoading && <div>
-					<h2 style={{marginTop: 0}}>View Article</h2>
+					<h2 style={{marginTop: 0}}>Preview</h2>
 					<div style={style}>
 						Loading...
 					</div>
