@@ -8,7 +8,7 @@ const mapStateToProps = (state) => {
 		links: state.currentPage.links,
 		completeGame: state.completeGame,
 		gameBoardLoading: state.gameBoardLoading,
-		filter: state.filter
+		gameBoardFilter: state.gameBoardFilter
 	};
 };
 

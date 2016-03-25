@@ -1,8 +1,20 @@
 import jsonp from 'jsonp';
 import { connect } from 'react-redux';
 import LinkButton from '../Components/LinkButton';
-import { toggleGameBoardLoading, toggleViewerLoading, addBreadcrumb, completeGame, getViewer, getCurrentPage, getFilter } from '../Actions';
-import { cleanText, cleanLinks } from '../Utils';
+import { 
+	addBreadcrumb, 
+	completeGame, 
+	currentPage, 
+	gameBoardFilter,
+	gameBoardLoading, 
+	viewer, 
+	viewerLoading
+} from '../Actions';
+
+import { 
+	cleanText, 
+	cleanLinks 
+} from '../Utils';
 
 const mapStateToProps = (state) => {
 	return {
@@ -15,13 +27,14 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onLinkClick: (title, finalTitle, breadcrumbs) => {
-			dispatch(toggleGameBoardLoading(true));
-			dispatch(toggleViewerLoading(true));
+			dispatch(gameBoardLoading(true));
+			dispatch(viewerLoading(true));
+
 			if (title === finalTitle) {
 				dispatch(addBreadcrumb(title));
 				dispatch(completeGame(true));
-				dispatch(toggleGameBoardLoading(false));
-				dispatch(toggleViewerLoading(false));
+				dispatch(gameBoardLoading(false));
+				dispatch(viewerLoading(false));
 			} else {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + title + '&prop=text|links', function (err, content) {
 					let links = content.parse.links;
@@ -30,11 +43,11 @@ const mapDispatchToProps = (dispatch) => {
 
 					text = cleanText(text);
 					dispatch(addBreadcrumb(title));
-					dispatch(getViewer(title, text));
-					dispatch(getCurrentPage(title, newLinks));
-					dispatch(getFilter(''));
-					dispatch(toggleGameBoardLoading(false));
-					dispatch(toggleViewerLoading(false));
+					dispatch(viewer(title, text));
+					dispatch(currentPage(title, newLinks));
+					dispatch(gameBoardFilter(''));
+					dispatch(gameBoardLoading(false));
+					dispatch(viewerLoading(false));
 				});
 			}
 		}

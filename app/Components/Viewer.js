@@ -16,8 +16,8 @@ class Viewer extends Component {
 			padding: 30
 		};
 		return (
-			<div className="col-md-6" style={{marginBottom: 20}}>
-				{title && !completeGame && !viewerLoading && <div>
+			<div className="col-md-6">
+				{title && !completeGame && !viewerLoading && <div style={{marginBottom: 20}}>
 					<h2 style={{marginTop: 0}}>Preview</h2>
 					<div style={style}>
 						<h3 style={{marginTop: 0}}>{title}</h3>

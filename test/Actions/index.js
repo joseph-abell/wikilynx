@@ -2,19 +2,19 @@ import expect from 'expect';
 import { createStore } from 'redux';
 import gameApp from '../../app/Reducers';
 import { 
-	togglePlayerReady,
-	getFirstPage,
-	getLastPage,
-	getCurrentPage,
-	getViewer,
+	firstPage,
+	lastPage,
+	currentPage,
+	customGame,
+	viewer,
 	addBreadcrumb,
 	resetBreadcrumb,
 	completeGame,
-	toggleNewGame,
-	toggleViewerLoading,
-	toggleGameBoardLoading,
-	toggleNewGameLoading,
-	getFilter
+	newGame,
+	viewerLoading,
+	gameBoardLoading,
+	newGameLoading,
+	gameBoardFilter
 } from '../../app/Actions';
 
 describe('actions', () => {
@@ -28,13 +28,14 @@ describe('actions', () => {
 					title: '',
 					content: ''
 				},
-				filter: '',
+				gameBoardFilter: '',
 				firstPage: '',
 				lastPage: '',
 				currentPage: {
 					title: '',
 					links: []
 				},
+				customGame: false,
 				breadcrumbs: [],
 				completeGame: false,
 				viewerLoading: false,
@@ -46,65 +47,63 @@ describe('actions', () => {
 		});
 	});
 
-	describe('togglePlayerReady', () => {
-		let store = createStore(gameApp);
-
-		it('should toggle the playerReady state to true', () => {
-			const actual = store.dispatch(togglePlayerReady(true));
-			const expected = {
-				type: 'TOGGLE_PLAYER_READY',
-				playerReady: true
-			};
-
-			expect(actual).toEqual(expected);
-		});
-
-		it('should toggle the playerReady state to false', () => {
-			const actual = store.dispatch(togglePlayerReady(false));
-			const expected = {
-				type: 'TOGGLE_PLAYER_READY',
-				playerReady: false
-			};
-
-			expect(actual).toEqual(expected);
-		});
-	});
-
-	describe('getFirstPage', () => {
+	describe('firstPage', () => {
 		let store = createStore(gameApp);
 
 		it('should set firstPage to Kanye West', () => {
-			const actual = store.dispatch(getFirstPage('Kanye West'));
+			const actual = store.dispatch(firstPage('Kanye West'));
 			const expected = {
-				type: 'GET_FIRST_PAGE',
+				type: 'FIRST_PAGE',
 				firstPage: 'Kanye West'
 			};
 
 			expect(actual).toEqual(expected);
 		});
-	});
 
-	describe('getLastPage', () => {
-		let store = createStore(gameApp);
-
-		it('should set lastPage to George Michael', () => {
-			const actual = store.dispatch(getLastPage('George Michael'));
+		it('should set firstPage to empty string', () => {
+			store.dispatch(firstPage('Kanye West'));
+			const actual = store.dispatch(firstPage(''));
 			const expected = {
-				type: 'GET_LAST_PAGE',
-				lastPage: 'George Michael'
+				type: 'FIRST_PAGE',
+				firstPage: ''
 			};
 
 			expect(actual).toEqual(expected);
 		});
 	});
 
-	describe('getCurrentPage', () => {
+	describe('lastPage', () => {
+		let store = createStore(gameApp);
+
+		it('should set lastPage to George Michael', () => {
+			const actual = store.dispatch(lastPage('George Michael'));
+			const expected = {
+				type: 'LAST_PAGE',
+				lastPage: 'George Michael'
+			};
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set lastPage to George Michael', () => {
+			store.dispatch(lastPage('George Michael'));
+			const actual = store.dispatch(lastPage(''));
+			const expected = {
+				type: 'LAST_PAGE',
+				lastPage: ''
+			};
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('currentPage', () => {
 		let store = createStore(gameApp);
 
 		it('should get currentPage\'s title to Shirley Bassey, and the links to an empty link', () => {
-			const actual = store.dispatch(getCurrentPage('Shirley Bassey', []));
+			const actual = store.dispatch(currentPage('Shirley Bassey', []));
 			const expected = {
-				type: 'GET_CURRENT_PAGE',
+				type: 'CURRENT_PAGE',
 				currentPage: {
 					title: 'Shirley Bassey',
 					links: []
@@ -115,9 +114,9 @@ describe('actions', () => {
 		});
 
 		it('should get currentPage\'s title set to Commodore 64, and the links to an array with Mr Potato Head, The Guardian, Rubik\'s Cube and Commodore 64 in it', () => {
-			const actual = store.dispatch(getCurrentPage('Commodore 64', ['Mr Potato Head', 'The Guardian', 'Rubik\'s Cube', 'Commodore 64']));
+			const actual = store.dispatch(currentPage('Commodore 64', ['Mr Potato Head', 'The Guardian', 'Rubik\'s Cube', 'Commodore 64']));
 			const expected = {
-				type: 'GET_CURRENT_PAGE',
+				type: 'CURRENT_PAGE',
 				currentPage: {
 					title: 'Commodore 64',
 					links: [
@@ -131,18 +130,47 @@ describe('actions', () => {
 
 			expect(actual).toEqual(expected);
 		});
+
+		it('should reset currentPageto empty', () => {
+			store.dispatch(currentPage('Commodore 64', ['Mr Potato Head', 'The Guardian', 'Rubik\'s Cube', 'Commodore 64']));
+			const actual = store.dispatch(currentPage('', []));
+
+			const expected = {
+				type: 'CURRENT_PAGE',
+				currentPage: {
+					title: '',
+					links: []
+				}
+			};
+
+			expect(actual).toEqual(expected);
+		});
 	});
 
-	describe('getViewer', () => {
+	describe('viewer', () => {
 		let store = createStore(gameApp);
 
 		it('should set the viewer to Barack Obama, and set the content to be "Barack Obama Banana Pyjama Pirhanna."', () => {
-			const actual = store.dispatch(getViewer('Barack Obama', 'Barack Obama Banana Pyjama Pirhanna'));
+			const actual = store.dispatch(viewer('Barack Obama', 'Barack Obama Banana Pyjama Pirhanna'));
 			const expected = {
-				type: 'GET_VIEWER',
+				type: 'VIEWER',
 				viewer: {
 					title: 'Barack Obama',
 					content: 'Barack Obama Banana Pyjama Pirhanna'
+				}
+			};
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the viewer empty', () => {
+			store.dispatch(viewer('Barack Obama', 'Barack Obama Banana Pyjama Pirhanna'));
+			const actual = store.dispatch(viewer('', ''));
+			const expected = {
+				type: 'VIEWER',
+				viewer: {
+					title: '',
+					content: ''
 				}
 			};
 
@@ -211,12 +239,12 @@ describe('actions', () => {
 		});
 	});
 
-	describe('toggleViewerLoading', () => {
+	describe('viewerLoading', () => {
 		let store = createStore(gameApp);
 		it('should set viewerLoading to true', () => {
-			const actual = store.dispatch(toggleViewerLoading(true));
+			const actual = store.dispatch(viewerLoading(true));
 			const expected = {
-				type: 'TOGGLE_VIEWER_LOADING',
+				type: 'VIEWER_LOADING',
 				viewerLoading: true
 			};
 
@@ -224,9 +252,10 @@ describe('actions', () => {
 		});
 
 		it('should set viewerLoading to false', () => {
-			const actual = store.dispatch(toggleViewerLoading(false));
+			store.dispatch(viewerLoading(true));
+			const actual = store.dispatch(viewerLoading(false));
 			const expected = {
-				type: 'TOGGLE_VIEWER_LOADING',
+				type: 'VIEWER_LOADING',
 				viewerLoading: false
 			};
 
@@ -234,12 +263,13 @@ describe('actions', () => {
 		});
 	});
 
-	describe('toggleGameBoardLoading', () => {
+	describe('gameBoardLoading', () => {
 		let store = createStore(gameApp);
+
 		it('should set gameBoardLoading to true', () => {
-			const actual = store.dispatch(toggleGameBoardLoading(true));
+			const actual = store.dispatch(gameBoardLoading(true));
 			const expected = {
-				type: 'TOGGLE_GAME_BOARD_LOADING',
+				type: 'GAME_BOARD_LOADING',
 				gameBoardLoading: true
 			};
 
@@ -247,9 +277,10 @@ describe('actions', () => {
 		});
 
 		it('should set gameBoardLoading to false', () => {
-			const actual = store.dispatch(toggleGameBoardLoading(false));
+			store.dispatch(gameBoardLoading(true));
+			const actual = store.dispatch(gameBoardLoading(false));
 			const expected = {
-				type: 'TOGGLE_GAME_BOARD_LOADING',
+				type: 'GAME_BOARD_LOADING',
 				gameBoardLoading: false
 			};
 
@@ -257,12 +288,13 @@ describe('actions', () => {
 		});
 	});
 
-	describe('toggleNewGame', () => {
+	describe('newGame', () => {
 		let store = createStore(gameApp);
+
 		it('should set newGame to true', () => {
-			const actual = store.dispatch(toggleNewGame(true));
+			const actual = store.dispatch(newGame(true));
 			const expected = {
-				type: 'TOGGLE_NEW_GAME',
+				type: 'NEW_GAME',
 				newGame: true
 			};
 
@@ -270,9 +302,10 @@ describe('actions', () => {
 		});
 
 		it('should set newGame to false', () => {
-			const actual = store.dispatch(toggleNewGame(false));
+			store.dispatch(newGame(true));
+			const actual = store.dispatch(newGame(false));
 			const expected = {
-				type: 'TOGGLE_NEW_GAME',
+				type: 'NEW_GAME',
 				newGame: false
 			};
 
@@ -280,12 +313,12 @@ describe('actions', () => {
 		});
 	});
 
-	describe('toggleNewGameLoading', () => {
+	describe('newGameLoading', () => {
 		let store = createStore(gameApp);
 		it('should set newGameLoading to true', () => {
-			const actual = store.dispatch(toggleNewGameLoading(true));
+			const actual = store.dispatch(newGameLoading(true));
 			const expected = {
-				type: 'TOGGLE_NEW_GAME_LOADING',
+				type: 'NEW_GAME_LOADING',
 				newGameLoading: true
 			};
 
@@ -293,9 +326,10 @@ describe('actions', () => {
 		});
 
 		it('should set newGameLoading to false', () => {
-			const actual = store.dispatch(toggleNewGameLoading(false));
+			store.dispatch(newGameLoading(true));
+			const actual = store.dispatch(newGameLoading(false));
 			const expected = {
-				type: 'TOGGLE_NEW_GAME_LOADING',
+				type: 'NEW_GAME_LOADING',
 				newGameLoading: false
 			};
 
@@ -303,23 +337,48 @@ describe('actions', () => {
 		});
 	});
 
-	describe('getFilter', () => {
+	describe('gameBoardFilter', () => {
 		let store = createStore(gameApp);
 		it('should set the filter to Rick Astley', () => {
-			const actual = store.dispatch(getFilter('Rick Astley'));
+			const actual = store.dispatch(gameBoardFilter('Rick Astley'));
 			const expected = {
-				type: 'GET_FILTER',
-				filter: 'Rick Astley'
+				type: 'GAME_BOARD_FILTER',
+				gameBoardFilter: 'Rick Astley'
 			};
 
 			expect(actual).toEqual(expected);
 		});
 
 		it('should set the filter back to empty', () => {
-			const actual = store.dispatch(getFilter(''));
+			store.dispatch(gameBoardFilter('Rick Astley'));
+			const actual = store.dispatch(gameBoardFilter(''));
 			const expected = {
-				type: 'GET_FILTER',
-				filter: ''
+				type: 'GAME_BOARD_FILTER',
+				gameBoardFilter: ''
+			};
+
+			expect(actual).toEqual(expected);		
+		});
+	});
+
+	describe('customGame', () => {
+		let store = createStore(gameApp);
+		it('should set the filter to true', () => {
+			const actual = store.dispatch(customGame(true));
+			const expected = {
+				type: 'CUSTOM_GAME',
+				customGame: true
+			};
+
+			expect(actual).toEqual(expected);
+		});
+
+		it('should set the filter back to empty', () => {
+			store.dispatch(customGame(true));
+			const actual = store.dispatch(customGame(false));
+			const expected = {
+				type: 'CUSTOM_GAME',
+				customGame: false
 			};
 
 			expect(actual).toEqual(expected);		

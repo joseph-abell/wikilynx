@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import Viewer from '../Components/Viewer';
-import { getViewerPage } from '../Actions';
 
 const mapStateToProps = (state) => {
 	return {

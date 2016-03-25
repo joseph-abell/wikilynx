@@ -6,8 +6,8 @@ class Breadcrumbs extends Component {
 		let { breadcrumbs, completeGame } = this.props;
 
 		return (
-			<div style={{marginBottom: 40}} className='col-md-12'>
-				{ breadcrumbs[0] && <div>
+			<div className='col-md-12'>
+				{ breadcrumbs[0] && <div className="row" style={{marginBottom: 40}}>
 					<h3>Your Moves</h3>
 					<div>
 						{

@@ -5,16 +5,17 @@ import gameApp from '../../app/Reducers';
 import { 
 	ADD_BREADCRUMB,
 	COMPLETE_GAME,
-	GET_CURRENT_PAGE, 
-	GET_FIRST_PAGE,
-	GET_FILTER, 
-	GET_LAST_PAGE, 
-	GET_VIEWER,
+	CURRENT_PAGE, 
+	CUSTOM_GAME,
+	FIRST_PAGE,
+	GAME_BOARD_FILTER, 
+	LAST_PAGE, 
+	VIEWER,
 	RESET_BREADCRUMB,
-	TOGGLE_VIEWER_LOADING,
-	TOGGLE_GAME_BOARD_LOADING,
-	TOGGLE_NEW_GAME,
-	TOGGLE_NEW_GAME_LOADING
+	VIEWER_LOADING,
+	GAME_BOARD_LOADING,
+	NEW_GAME,
+	NEW_GAME_LOADING
 } from '../../app/Actions';
 
 function stateBefore () {
@@ -26,7 +27,7 @@ describe('reducers', () => {
 	describe('firstPage', () => {
 		it('should set the firstPage to John Wayne', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_FIRST_PAGE,
+				type: FIRST_PAGE,
 				firstPage: 'John Wayne'
 			});
 			
@@ -37,7 +38,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: 'John Wayne',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -55,12 +57,12 @@ describe('reducers', () => {
 
 		it('should allow resetting firstPage to empty string', () => {
 			const dirtyState = gameApp(stateBefore(), {
-				type: GET_FIRST_PAGE,
+				type: FIRST_PAGE,
 				firstPage: 'J.K. Rowling'
 			});
 
 			const actual = gameApp(dirtyState, {
-				type: GET_FIRST_PAGE,
+				type: FIRST_PAGE,
 				firstPage: ''
 			});
 
@@ -71,7 +73,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -91,7 +94,7 @@ describe('reducers', () => {
 	describe('lastPage', () => {
 		it('should set the lastPage to Superman', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_LAST_PAGE,
+				type: LAST_PAGE,
 				lastPage: 'Superman'
 			});
 			
@@ -102,7 +105,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: 'Superman',
@@ -120,12 +124,12 @@ describe('reducers', () => {
 
 		it('should allow resetting lastPage to empty string', () => {
 			const dirtyState = gameApp(stateBefore(), {
-				type: GET_LAST_PAGE,
+				type: LAST_PAGE,
 				lastPage: 'Gandalf'
 			});
 
 			const actual = gameApp(dirtyState, {
-				type: GET_LAST_PAGE,
+				type: LAST_PAGE,
 				lastPage: ''
 			});
 
@@ -136,7 +140,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -156,7 +161,7 @@ describe('reducers', () => {
 	describe('currentPage', () => {
 		it('should set the currentPage title to Virtual Reality, no links', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_CURRENT_PAGE,
+				type: CURRENT_PAGE,
 				currentPage: {
 					title: 'Virtual Reality',
 					links: []
@@ -170,7 +175,8 @@ describe('reducers', () => {
 					links: [],
 					title: 'Virtual Reality'
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -188,7 +194,7 @@ describe('reducers', () => {
 
 		it('should set the currentPage title to The Streets, with links', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_CURRENT_PAGE,
+				type: CURRENT_PAGE,
 				currentPage: {
 					title: 'The Streets',
 					links: ['Adele', 'Fun.', 'The Streets']
@@ -202,7 +208,8 @@ describe('reducers', () => {
 					links: ['Adele', 'Fun.', 'The Streets'],
 					title: 'The Streets'
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -220,7 +227,7 @@ describe('reducers', () => {
 
 		it('should allow resetting currentPage', () => {
 			const dirtyState = gameApp(stateBefore(), {
-				type: GET_CURRENT_PAGE,
+				type: CURRENT_PAGE,
 				currentPage: {
 					title: 'Warioware',
 					links: ['Mario 64', 'Games', 'Project Cars']
@@ -228,7 +235,7 @@ describe('reducers', () => {
 			});
 
 			const actual = gameApp(dirtyState, {
-				type: GET_CURRENT_PAGE,
+				type: CURRENT_PAGE,
 				currentPage: {
 					title: '',
 					links: []
@@ -242,7 +249,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -262,7 +270,7 @@ describe('reducers', () => {
 	describe('viewer', () => {
 		it('should set the viewer title to HTC Vive, no content', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_VIEWER,
+				type: VIEWER,
 				viewer: {
 					title: 'HTC Vive',
 					content: ''
@@ -276,7 +284,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -294,7 +303,7 @@ describe('reducers', () => {
 
 		it('should set the viewer title to Playstation Move, with content', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_VIEWER,
+				type: VIEWER,
 				viewer: {
 					title: 'Playstation Move',
 					content: 'Do, do, do... Come on and do the Conga'
@@ -308,7 +317,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -326,7 +336,7 @@ describe('reducers', () => {
 
 		it('should allow resetting viewer', () => {
 			const dirtyState = gameApp(stateBefore(), {
-				type: GET_VIEWER,
+				type: VIEWER,
 				viewer: {
 					title: 'Star Wars',
 					content: 'Fake Hans Solo lands, and R2D2 gets off.'
@@ -334,7 +344,7 @@ describe('reducers', () => {
 			});
 
 			const actual = gameApp(dirtyState, {
-				type: GET_VIEWER,
+				type: VIEWER,
 				viewer: {
 					title: '',
 					content: ''
@@ -348,7 +358,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -383,7 +394,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -422,7 +434,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -460,7 +473,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -488,7 +502,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -518,7 +533,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -546,7 +562,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -566,7 +583,7 @@ describe('reducers', () => {
 	describe('viewerLoading', () => {
 		it('should set the viewerLoading flag to true', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_VIEWER_LOADING,
+				type: VIEWER_LOADING,
 				viewerLoading: true
 			});
 			const expected = {
@@ -576,7 +593,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -594,7 +612,7 @@ describe('reducers', () => {
 
 		it('should set the viewerLoading flag to false.', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_VIEWER_LOADING,
+				type: VIEWER_LOADING,
 				viewerLoading: false
 			});
 			const expected = {
@@ -604,7 +622,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -624,7 +643,7 @@ describe('reducers', () => {
 	describe('gameBoardLoading', () => {
 		it('should set the gameBoardLoading flag to true', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_GAME_BOARD_LOADING,
+				type: GAME_BOARD_LOADING,
 				gameBoardLoading: true
 			});
 			const expected = {
@@ -634,7 +653,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: true,
 				lastPage: '',
@@ -652,7 +672,7 @@ describe('reducers', () => {
 
 		it('should set the gameBoardLoading flag to false.', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_GAME_BOARD_LOADING,
+				type: GAME_BOARD_LOADING,
 				gameBoardLoading: false
 			});
 			const expected = {
@@ -662,7 +682,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -682,7 +703,7 @@ describe('reducers', () => {
 	describe('newGame', () => {
 		it('should set the newGame flag to true', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_NEW_GAME,
+				type: NEW_GAME,
 				newGame: true
 			});
 			const expected = {
@@ -692,7 +713,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -710,7 +732,7 @@ describe('reducers', () => {
 
 		it('should set the newGame flag to false.', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_NEW_GAME,
+				type: NEW_GAME,
 				newGame: false
 			});
 			const expected = {
@@ -720,7 +742,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -740,7 +763,7 @@ describe('reducers', () => {
 	describe('newGameLoading', () => {
 		it('should set the newGameLoading flag to true', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_NEW_GAME_LOADING,
+				type: NEW_GAME_LOADING,
 				newGameLoading: true
 			});
 			const expected = {
@@ -750,7 +773,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -768,7 +792,7 @@ describe('reducers', () => {
 
 		it('should set the newGameLoading flag to false.', () => {
 			const actual = gameApp(stateBefore(), {
-				type: TOGGLE_NEW_GAME_LOADING,
+				type: NEW_GAME_LOADING,
 				newGameLoading: false
 			});
 			const expected = {
@@ -778,7 +802,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -795,11 +820,11 @@ describe('reducers', () => {
 		});
 	});
 
-	describe('filter', () => {
+	describe('gameBoardFilter', () => {
 		it('should set the filter to David Bowie', () => {
 			const actual = gameApp(stateBefore(), {
-				type: GET_FILTER,
-				filter: 'David Bowie'
+				type: GAME_BOARD_FILTER,
+				gameBoardFilter: 'David Bowie'
 			});
 			const expected = {
 				breadcrumbs: [],
@@ -808,7 +833,8 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: 'David Bowie',
+				customGame: false,
+				gameBoardFilter: 'David Bowie',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',
@@ -824,13 +850,13 @@ describe('reducers', () => {
 
 		it('should reset the filter to an empty string', () => {
 			const dirtyFilter = gameApp(stateBefore(), {
-				type: GET_FILTER,
-				filter: 'Hermione Granger'
+				type: GAME_BOARD_FILTER,
+				gameBoardFilter: 'Hermione Granger'
 			});
 
 			const actual = gameApp(dirtyFilter, {
-				type: GET_FILTER,
-				filter: ''
+				type: GAME_BOARD_FILTER,
+				gameBoardFilter: ''
 			});
 
 			const expected = {
@@ -840,7 +866,72 @@ describe('reducers', () => {
 					links: [],
 					title: ''
 				},
-				filter: '',
+				customGame: false,
+				gameBoardFilter: '',
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			};
+
+			expect(actual).toEqual(expected);
+		});
+	});
+
+	describe('customGame', () => {
+		it('should set the customGame to true', () => {
+			const actual = gameApp(stateBefore(), {
+				type: CUSTOM_GAME,
+				customGame: true
+			});
+			const expected = {
+				breadcrumbs: [],
+				completeGame: false,
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				customGame: true,
+				gameBoardFilter: '',
+				firstPage: '',
+				gameBoardLoading: false,
+				lastPage: '',
+				newGame: true,
+				newGameLoading: false,
+				viewer: {
+					title: '',
+					content: ''
+				},
+				viewerLoading: false
+			};
+		});
+
+		it('should reset the customGame to false', () => {
+			const dirtyCustomGame = gameApp(stateBefore(), {
+				type: CUSTOM_GAME,
+				customGame: true
+			});
+
+			const actual = gameApp(dirtyCustomGame, {
+				type: CUSTOM_GAME,
+				customGame: false
+			});
+
+			const expected = {
+				breadcrumbs: [],
+				completeGame: false,
+				currentPage: {
+					links: [],
+					title: ''
+				},
+				customGame: false,
+				gameBoardFilter: '',
 				firstPage: '',
 				gameBoardLoading: false,
 				lastPage: '',

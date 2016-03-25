@@ -1,19 +1,12 @@
 import jsonp from 'jsonp';
 import { connect } from 'react-redux';
 import Header from '../Components/Header';
-import { cleanLinks, cleanText, resetGame, retryGame } from '../Utils';
 import { 
-	togglePlayerReady, 
-	getFirstPage, 
-	getLastPage, 
-	getCurrentPage, 
-	getViewer, 
-	resetBreadcrumb, 
-	addBreadcrumb, 
-	toggleViewerLoading,
-	toggleGameBoardLoading,
-	completeGame
-} from '../Actions';
+	cleanLinks, 
+	cleanText, 
+	resetGame, 
+	retryGame 
+} from '../Utils';
 
 const mapStateToProps = (state) => {
 	return {

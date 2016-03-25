@@ -1,58 +1,4 @@
-export const TOGGLE_PLAYER_READY = "TOGGLE_PLAYER_READY";
-export const GET_FIRST_PAGE = "GET_FIRST_PAGE";
-export const GET_LAST_PAGE = "GET_LAST_PAGE";
-export const GET_CURRENT_PAGE = "GET_CURRENT_PAGE";
-export const GET_VIEWER = "GET_VIEWER";
-export const GET_FILTER = "GET_FILTER";
 export const ADD_BREADCRUMB = "ADD_BREADCRUMB";
-export const RESET_BREADCRUMB = "RESET_BREADCRUMB";
-export const COMPLETE_GAME = "COMPLETE_GAME";
-export const TOGGLE_VIEWER_LOADING = "TOGGLE_VIEWER_LOADING";
-export const TOGGLE_GAME_BOARD_LOADING = "TOGGLE_GAME_BOARD_LOADING";
-export const TOGGLE_NEW_GAME = "TOGGLE_NEW_GAME";
-export const TOGGLE_NEW_GAME_LOADING = "TOGGLE_NEW_GAME_LOADING";
-
-
-export function togglePlayerReady (playerReady) {
-	return {
-		type: TOGGLE_PLAYER_READY,
-		playerReady: playerReady
-	};
-}
-
-export function getFirstPage (title) {
-	return {
-		type: GET_FIRST_PAGE,
-		firstPage: title
-	};
-}
-
-export function getLastPage (title) {
-	return {
-		type: GET_LAST_PAGE,
-		lastPage: title
-	};
-}
-
-export function getCurrentPage (title, links) {
-	return {
-		type: GET_CURRENT_PAGE,
-		currentPage: {
-			title: title,
-			links: links
-		}
-	};
-}
-
-export function getViewer (title, content) {
-	return {
-		type: GET_VIEWER,
-		viewer: {
-			title: title,
-			content: content
-		}
-	};
-}
 
 export function addBreadcrumb (title) {
 	return {
@@ -61,50 +7,126 @@ export function addBreadcrumb (title) {
 	};
 }
 
+
+export const RESET_BREADCRUMB = "RESET_BREADCRUMB";
+
 export function resetBreadcrumb () {
 	return {
 		type: RESET_BREADCRUMB
 	};
 }
 
-export function completeGame (completeGame) {
+
+export const COMPLETE_GAME = "COMPLETE_GAME";
+
+export function completeGame (complete) {
 	return {
 		type: COMPLETE_GAME,
-		completeGame: completeGame
+		completeGame: complete
 	};
 }
 
-export function toggleViewerLoading (loading) {
+
+export const CURRENT_PAGE = "CURRENT_PAGE";
+
+export function currentPage (title, links) {
 	return {
-		type: TOGGLE_VIEWER_LOADING,
-		viewerLoading: loading
+		type: CURRENT_PAGE,
+		currentPage: {
+			title: title,
+			links: links
+		}
 	};
 }
 
-export function toggleGameBoardLoading (loading) {
+export const CUSTOM_GAME = "CUSTOM_GAME";
+
+export function customGame (custom) {
 	return {
-		type: TOGGLE_GAME_BOARD_LOADING,
+		type: CUSTOM_GAME,
+		customGame: custom
+	};
+}
+
+
+export const FIRST_PAGE = "FIRST_PAGE";
+
+export function firstPage (title) {
+	return {
+		type: FIRST_PAGE,
+		firstPage: title
+	};
+}
+
+
+export const GAME_BOARD_FILTER = "GAME_BOARD_FILTER";
+
+export function gameBoardFilter (filter) {
+	return {
+		type: GAME_BOARD_FILTER,
+		gameBoardFilter: filter
+	};
+}
+
+
+export const GAME_BOARD_LOADING = "GAME_BOARD_LOADING";
+
+export function gameBoardLoading (loading) {
+	return {
+		type: GAME_BOARD_LOADING,
 		gameBoardLoading: loading
 	};
 }
 
-export function toggleNewGame (newGame) {
+
+export const LAST_PAGE = "LAST_PAGE";
+
+export function lastPage (title) {
 	return {
-		type: TOGGLE_NEW_GAME,
+		type: LAST_PAGE,
+		lastPage: title
+	};
+}
+
+
+export const NEW_GAME = "NEW_GAME";
+
+export function newGame (newGame) {
+	return {
+		type: NEW_GAME,
 		newGame: newGame
 	};
 }
 
-export function toggleNewGameLoading (newGameLoading) {
+
+export const NEW_GAME_LOADING = "NEW_GAME_LOADING";
+
+export function newGameLoading (loading) {
 	return {
-		type: TOGGLE_NEW_GAME_LOADING,
-		newGameLoading: newGameLoading
+		type: NEW_GAME_LOADING,
+		newGameLoading: loading
 	};
 }
 
-export function getFilter (filter) {
+
+export const VIEWER = "VIEWER";
+
+export function viewer (title, content) {
 	return {
-		type: GET_FILTER,
-		filter: filter
+		type: VIEWER,
+		viewer: {
+			title: title,
+			content: content
+		}
+	};
+}
+
+
+export const VIEWER_LOADING = "VIEWER_LOADING";
+
+export function viewerLoading (loading) {
+	return {
+		type: VIEWER_LOADING,
+		viewerLoading: loading
 	};
 }

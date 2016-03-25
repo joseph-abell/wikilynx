@@ -9,7 +9,7 @@ class Link extends Component {
 		return (
 			<div style={{marginBottom: 10}}>
 				{ !completeGame && <div>
-					<a style={{display: 'block'}}>{title}</a>
+					<span style={{display: 'block'}}>{title}</span>
 					<ViewButton title={title} />
 					<LinkButton title={title} lastPage={lastPage} breadcrumbs={breadcrumbs} />
 				</div> }

@@ -1,60 +1,19 @@
 import { combineReducers } from 'redux';
 import { 
-	GET_FIRST_PAGE, 
-	GET_LAST_PAGE, 
-	GET_CURRENT_PAGE, 
-	GET_VIEWER,
 	ADD_BREADCRUMB,
-	COMPLETE_GAME,
 	RESET_BREADCRUMB,
-	TOGGLE_VIEWER_LOADING,
-	TOGGLE_GAME_BOARD_LOADING,
-	TOGGLE_NEW_GAME,
-	TOGGLE_NEW_GAME_LOADING,
-	GET_FILTER
+	COMPLETE_GAME,
+	CURRENT_PAGE, 
+	CUSTOM_GAME,
+	FIRST_PAGE, 
+	GAME_BOARD_FILTER,
+	GAME_BOARD_LOADING,
+	LAST_PAGE, 
+	NEW_GAME,
+	NEW_GAME_LOADING,	
+	VIEWER,
+	VIEWER_LOADING
 } from '../Actions';
-
-const firstPage = (state = '', action) => {
-	switch (action.type) {
-		case GET_FIRST_PAGE:
-			return action.firstPage;
-		default:
-			return state;
-	}
-};
-
-const lastPage = (state = '', action) => {
-	switch (action.type) {
-		case GET_LAST_PAGE:
-			return action.lastPage;
-		default:
-			return state;
-	}
-};
-
-const currentPage = (state = {title: '', links: []}, action) => {
-	switch (action.type) {
-		case GET_CURRENT_PAGE:
-			return {
-				title: action.currentPage.title,
-				links: action.currentPage.links			
-			};
-		default:
-			return state;
-	}
-};
-
-const viewer = (state = {title: '', content: ''}, action) => {
-	switch (action.type) {
-		case GET_VIEWER:
-			return {
-				title: action.viewer.title,
-				content: action.viewer.content
-			};
-		default: 
-			return state;
-	}
-};
 
 const breadcrumbs = (state = [], action) => {
 	switch (action.type) {
@@ -81,10 +40,40 @@ const completeGame = (state = false, action) => {
 	}
 };
 
-const viewerLoading = (state = false, action) => {
+const currentPage = (state = {title: '', links: []}, action) => {
 	switch (action.type) {
-		case TOGGLE_VIEWER_LOADING:
-			return action.viewerLoading;
+		case CURRENT_PAGE:
+			return {
+				title: action.currentPage.title,
+				links: action.currentPage.links			
+			};
+		default:
+			return state;
+	}
+};
+
+const customGame = (state = false, action) => {
+	switch (action.type) {
+		case CUSTOM_GAME:
+			return action.customGame;
+		default:
+			return state;
+	}
+};
+
+const firstPage = (state = '', action) => {
+	switch (action.type) {
+		case FIRST_PAGE:
+			return action.firstPage;
+		default:
+			return state;
+	}
+};
+
+const gameBoardFilter = (state = '', action) => {
+	switch (action.type) {
+		case GAME_BOARD_FILTER:
+			return action.gameBoardFilter;
 		default:
 			return state;
 	}
@@ -92,8 +81,17 @@ const viewerLoading = (state = false, action) => {
 
 const gameBoardLoading = (state = false, action) => {
 	switch (action.type) {
-		case TOGGLE_GAME_BOARD_LOADING:
+		case GAME_BOARD_LOADING:
 			return action.gameBoardLoading;
+		default:
+			return state;
+	}
+};
+
+const lastPage = (state = '', action) => {
+	switch (action.type) {
+		case LAST_PAGE:
+			return action.lastPage;
 		default:
 			return state;
 	}
@@ -101,7 +99,7 @@ const gameBoardLoading = (state = false, action) => {
 
 const newGame = (state = true, action) => {
 	switch (action.type) {
-		case TOGGLE_NEW_GAME:
+		case NEW_GAME:
 			return action.newGame;
 		default:
 			return state;
@@ -110,34 +108,47 @@ const newGame = (state = true, action) => {
 
 const newGameLoading = (state = false, action) => {
 	switch (action.type) {
-		case TOGGLE_NEW_GAME_LOADING:
+		case NEW_GAME_LOADING:
 			return action.newGameLoading;
 		default:
 			return state;
 	}
 };
 
-const filter = (state = '', action) => {
+const viewer = (state = {title: '', content: ''}, action) => {
 	switch (action.type) {
-		case GET_FILTER:
-			return action.filter;
+		case VIEWER:
+			return {
+				title: action.viewer.title,
+				content: action.viewer.content
+			};
+		default: 
+			return state;
+	}
+};
+
+const viewerLoading = (state = false, action) => {
+	switch (action.type) {
+		case VIEWER_LOADING:
+			return action.viewerLoading;
 		default:
 			return state;
 	}
 };
 
 const gameApp = combineReducers({
-	viewer, 
-	firstPage, 
-	lastPage, 
-	currentPage, 
 	breadcrumbs, 
 	completeGame, 
-	viewerLoading, 
+	currentPage, 
+	customGame,
+	firstPage, 
+	gameBoardFilter,
 	gameBoardLoading,
+	lastPage, 
 	newGame,
 	newGameLoading,
-	filter
+	viewer, 
+	viewerLoading
 });
 
 export default gameApp;

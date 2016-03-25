@@ -1,17 +1,17 @@
 import { connect } from 'react-redux';
 import Filter from '../Components/Filter';
-import { getFilter } from '../Actions';
+import { gameBoardFilter } from '../Actions';
 
 const mapStateToProps = (state) => {
 	return {
-		filter: state.filter
+		filter: state.gameBoardFilter
 	};
 };
 
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onFilterChange: (event) => {
-			dispatch(getFilter(event.target.value));
+			dispatch(gameBoardFilter(event.target.value));
 		}
 	};
 };

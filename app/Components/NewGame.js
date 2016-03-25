@@ -5,42 +5,30 @@ class NewGame extends Component {
 		let { onRandomGameClick, onCustomGameClick, newGame, newGameLoading } = this.props;
 		return (
 			<div>
-				{newGame && !newGameLoading && <div>
-					<div className="col-md-6" style={{marginBottom: 20, marginTop: -20}}>
+				{newGame && !newGameLoading && <div className="row">
+					<div className="col-md-6" style={{marginBottom: 20}}>
 						<h2 style={{marginTop: 0}}>Create a Game</h2>
-						<p>Add a wikipedia page title into the following inputs.</p>
 						<div>
 							<div className="form-group">
-								<label forName="first-page">First Page</label>
-								<input type="text" className="form-control" placeholder="First Page" id="first-page" ref={node => {
-									this.firstPageInput = node;
-								}} />
+								<button className="btn btn-primary" onClick={() => {
+									onRandomGameClick();
+								}}>
+									Random Game
+								</button>{' '}
+								{' '}<button className="btn btn-primary" onClick={() => {
+									onCustomGameClick();
+								}}>
+									Custom Game
+								</button>
 							</div>
-							<div className="form-group">
-								<label forName="first-page">Last Page</label>
-								<input type="text" className="form-control" placeholder="Last Page" ref={node => {
-									this.lastPageInput = node;
-								}} />
-							</div>
-							<button className="btn btn-default" onClick={() => {
-								onCustomGameClick(this.firstPageInput.value, this.lastPageInput.value);
-							}}>
-								Play Custom Game
-							</button>
 						</div>
-					</div>
-					<div className="col-md-6" style={{marginBottom: 20, marginTop: -20}}>
-						<h2 style={{marginTop: 0}}>Play a Random Game</h2>
-						<button className="btn btn-default" onClick={() => {
-							onRandomGameClick();
-						}}>
-							Random Game
-						</button>
 					</div>
 				</div> }
 
-				{newGame && newGameLoading && <div className="col-md-12" style={{marginTop: -40}}>
-					<h1>Fetching pages from Wikipedia...</h1>
+				{newGame && newGameLoading && <div className="row">
+					<div className="col-md-12">
+						<h1>Fetching pages from Wikipedia...</h1>
+					</div>
 				</div> }
 			</div>
 		);
