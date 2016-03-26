@@ -18,7 +18,11 @@ class CustomGame extends Component {
 								<label forName="first-page">First Page</label>
 								<input type="text" className="form-control" placeholder="First Page" id="first-page" ref={node => {
 									this.firstPageInput = node;
-								}} />
+								}} onKeyPress={(event) => {
+									if (event.key == 'Enter') {
+										onCustomGameClick(this.firstPageInput.value, this.lastPageInput.value);
+									}
+								}}/>
 							</div>
 						</div>
 					</div> }
@@ -28,7 +32,11 @@ class CustomGame extends Component {
 								<label forName="first-page">Last Page</label>
 								<input type="text" className="form-control" placeholder="Last Page" id="last-page" ref={node => {
 									this.lastPageInput = node;
-								}} />
+								}} onKeyPress={(event) => {
+									if (event.key == 'Enter') {
+										onCustomGameClick(this.firstPageInput.value, this.lastPageInput.value);
+									}
+								}}/>
 							</div>
 						</div>
 					</div> }
