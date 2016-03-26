@@ -16,7 +16,7 @@ class CompletedGame extends Component {
 						{' '}or{' '} 
 						<button className='btn btn-default' onClick={() => {
 							onResetClick();
-						}}>Start Random Game</button>
+						}}>Restart</button>
 					</p>
 				</div> }
 			</div>
