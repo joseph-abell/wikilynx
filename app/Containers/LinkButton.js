@@ -37,6 +37,10 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(viewerLoading(false));
 			} else {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + title + '&prop=text|links', function (err, content) {
+					if (err) {
+						alert(err);
+						return false;
+					}
 					let links = content.parse.links;
 					let newLinks = cleanLinks(links);
 					let text = content.parse.text['*'];

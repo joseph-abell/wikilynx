@@ -38,11 +38,8 @@ class GameBoard extends Component {
 						</ul>
 					</div>
 				</div> }
-				{ links[0] && gameBoardLoading && !completeGame && !newGame && <div>
-					<h3 style={{marginTop: 0}}>Available Moves</h3>
-					<div style={style}>
-						Loading...
-					</div>
+				{ links[0] && gameBoardLoading && !completeGame && !newGame && <div style={style}>
+					Loading...
 				</div>}
 			</div>
 		);

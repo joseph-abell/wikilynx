@@ -13,8 +13,8 @@ const mapStateToProps = (state) => {
 	return {
 		breadcrumbs: state.breadcrumbs,
 		completeGame: state.completeGame,
-		firstTitle: state.firstPage,
-		lastTitle: state.lastPage
+		firstPage: state.firstPage,
+		lastPage: state.lastPage
 	};
 };
 

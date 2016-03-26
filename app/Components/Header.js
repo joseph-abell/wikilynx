@@ -4,7 +4,7 @@ import ViewButton from '../Containers/ViewButton';
 class Header extends Component {
 	render () {
 		let { firstPage, lastPage, completeGame, newGame } = this.props;
-
+		let small = false;
 		return (
 			<div className="page-header">
 				{lastPage && <div>
@@ -14,13 +14,13 @@ class Header extends Component {
 					<h2 style={{marginTop: 0}}>
 						<span style={{color: '#000'}}>{firstPage}</span>
 						{' '}
-						{!completeGame && <ViewButton title={firstPage} /> }
+						{!completeGame && <ViewButton title={firstPage} small={small} /> }
 						{' '}
 						to
 						{' '}
 						<span style={{color: '#000'}}>{lastPage}</span>
 						{' '}
-						{!completeGame && <ViewButton title={lastPage} />}
+						{!completeGame && <ViewButton title={lastPage} small={small} />}
 						<div style={{clear: 'both'}}></div>
 					</h2>
 					

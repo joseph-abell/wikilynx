@@ -16,6 +16,15 @@ export function resetBreadcrumb () {
 	};
 }
 
+export const REMOVE_BREADCRUMB = "REMOVE_BREADCRUMB";
+
+export function removeBreadcrumb (breadcrumb) {
+	return {
+		type: REMOVE_BREADCRUMB,
+		breadcrumb: breadcrumb
+	};
+}
+
 
 export const COMPLETE_GAME = "COMPLETE_GAME";
 

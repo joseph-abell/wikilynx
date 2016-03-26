@@ -5,12 +5,12 @@ import LinkButton from '../Containers/LinkButton';
 class Link extends Component {
 	render () {
 		let { onLinkClick, title, lastPage, breadcrumbs, completeGame } = this.props;
-
+		let small = false;
 		return (
 			<div style={{marginBottom: 10}}>
 				{ !completeGame && <div>
 					<span style={{display: 'block'}}>{title}</span>
-					<ViewButton title={title} />
+					<ViewButton title={title} small={small} />
 					<LinkButton title={title} lastPage={lastPage} breadcrumbs={breadcrumbs} />
 				</div> }
 			</div>

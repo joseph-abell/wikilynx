@@ -8,7 +8,7 @@ import {
 import { cleanText } from '../Utils';
 
 const mapStateToProps = (state) => {
-	return state;
+	return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

@@ -1,5 +1,6 @@
 import React, { PropTypes, Component } from 'react';
 import ViewButton from '../Containers/ViewButton';
+import BackButton from '../Containers/BackButton';
 
 class Breadcrumbs extends Component {
 	render () {
@@ -31,15 +32,24 @@ class Breadcrumbs extends Component {
 						{
 							breadcrumbs.map(function (breadcrumb, index) {
 								return (
-									<div style={{lineHeight: '30px', height: 30, float: 'left', paddingRight: 20}} key={index}>{breadcrumb.title}
-										{' '}
-										{!completeGame && index == (breadcrumbs.length - 1) && <div style={{float: 'right', marginLeft: 5, marginRight: 10}}>
-											<ViewButton title={breadcrumb.title} />
-										</div>}
+									<div style={{lineHeight: '30px', height: 30, display: 'inline-block'}} key={index}>
+										<span style={{float: 'left'}}>{breadcrumb.title}</span>
+										{!completeGame && 
+											<div style={{float: 'left', marginLeft: 5}}>
+												<ViewButton title={breadcrumb.title} small={true} />
+											</div>
+										}
+										{!completeGame && index != (breadcrumbs.length - 1) && 
+											<div style={{float: 'left', marginLeft: 5, marginRight: 20}}>
+												<BackButton title={breadcrumb.title} />
+											</div>
+										}
+										<span style={{float: 'left', width: 10}} />
 									</div>
 								);
 							})
 						}
+						<div style={{clear: 'both'}} />
 					</div>
 				</div> }
 			</div>

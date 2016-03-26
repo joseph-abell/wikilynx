@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { 
 	ADD_BREADCRUMB,
 	RESET_BREADCRUMB,
+	REMOVE_BREADCRUMB,
 	COMPLETE_GAME,
 	CURRENT_PAGE, 
 	CUSTOM_GAME,
@@ -26,6 +27,22 @@ const breadcrumbs = (state = [], action) => {
 			];
 		case RESET_BREADCRUMB:
 			return [];
+		case REMOVE_BREADCRUMB:
+			const breadcrumb = action.breadcrumb;
+			let breadcrumbId;
+
+			let newState = [];
+
+			for (let i = 0; i < state.length; i++) {
+				const testTitle = state[i].title;
+				if (testTitle !== breadcrumb) {
+					newState[newState.length] = {
+						title: testTitle
+					};
+				}
+			}
+
+			return newState;
 		default:
 			return state;
 	}
