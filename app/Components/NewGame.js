@@ -6,7 +6,7 @@ class NewGame extends Component {
 		return (
 			<div>
 				{newGame && !newGameLoading && <div className="row">
-					<div className="col-md-6" style={{marginBottom: 20}}>
+					<div className="col-md-6">
 						<h2 style={{marginTop: 0}}>Create a Game</h2>
 						<div>
 							<div className="form-group">
@@ -27,7 +27,7 @@ class NewGame extends Component {
 
 				{newGame && newGameLoading && <div className="row">
 					<div className="col-md-12">
-						<h1>Fetching pages from Wikipedia...</h1>
+						<h1 syyle={{marginTop: 0}}>Fetching pages from Wikipedia...</h1>
 					</div>
 				</div> }
 			</div>

@@ -1,5 +1,5 @@
 import expect from 'expect';
-import { cleanLinks, cleanText, resetGame } from '../../app/Utils/index';
+import { cleanLinks, cleanText } from '../../app/Utils/index';
 
 describe('utils', () => {
 	describe('cleanLinks', () => {

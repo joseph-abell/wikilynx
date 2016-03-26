@@ -5,10 +5,18 @@ class Breadcrumbs extends Component {
 	render () {
 		let { breadcrumbs, completeGame } = this.props;
 
+		const style = {
+			overflowY: 'auto',
+			backgroundColor: '#eee',
+			borderRadius: 6,
+			padding: 30,
+			marginTop: 30
+		};
+
 		return (
 			<div className='col-md-12'>
-				{ breadcrumbs[0] && <div className="row" style={{marginBottom: 40}}>
-					<h3>Your Moves</h3>
+				{ breadcrumbs[0] && <div className="row" style={style}>
+					<h3 style={{marginTop: 0, paddingBottom: 10, borderBottom: '1px solid #ddd'}}>Your Moves</h3>
 					<div>
 						{
 							breadcrumbs.map(function (breadcrumb, index) {

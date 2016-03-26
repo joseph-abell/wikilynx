@@ -8,7 +8,7 @@ class GameBoard extends Component {
 		
 		const style = {
 			height: 400,
-			overflowY: 'auto',
+			overflowY: 'none',
 			backgroundColor: '#eee',
 			borderRadius: 6,
 			padding: 30
@@ -16,11 +16,13 @@ class GameBoard extends Component {
 
 		return (
 			<div className="col-md-6">
-				{ links[0] && !completeGame && !gameBoardLoading && !newGame && <div style={{marginBottom: 20}}>
-					<h2 style={{marginTop: 0, float:'left'}}>Available Moves</h2>
-					<div style={{float: 'right', marginTop: 5}}><Filter /></div>
-					<div style={{clear: 'both'}}></div>
-					<div style={style}>
+				{ links[0] && !completeGame && !gameBoardLoading && !newGame && <div style={style}>
+					<div style={{paddingBottom: 2, borderBottom: '1px solid #ddd'}}>
+						<h3 style={{marginTop: 0, float:'left'}}>Available Moves</h3>
+						<div style={{float: 'right', marginTop: 2}}><Filter /></div>
+						<div style={{clear: 'both'}}></div>
+					</div>
+					<div style={{overflowY: 'auto', height: 300, paddingTop: 10}}>
 						<ul style={{margin: 0, padding: 0}}>
 						{
 							links.map(function (link, index) {
@@ -36,8 +38,8 @@ class GameBoard extends Component {
 						</ul>
 					</div>
 				</div> }
-				{ links[0] && gameBoardLoading && !completeGame && !newGame && <div style={{marginBottom: 20}}>
-					<h2 style={{marginTop: 0}}>Available Moves</h2>
+				{ links[0] && gameBoardLoading && !completeGame && !newGame && <div>
+					<h3 style={{marginTop: 0}}>Available Moves</h3>
 					<div style={style}>
 						Loading...
 					</div>

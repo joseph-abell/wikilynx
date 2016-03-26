@@ -19,13 +19,13 @@ let App = ({dispatch}) => {
 				<NewGame />
 				<CustomGame />
 				<CompletedGame />
-				<Breadcrumbs />
 				<div className="row">
 					<GameBoard />
 					<Viewer />
 					<div style={{clear: 'both'}} />
 				</div>
-				
+				<Breadcrumbs />
+				<div style={{clear: 'both'}} />
 				<Footer />
 			</div>
 		</div>
