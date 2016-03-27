@@ -37,21 +37,26 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(viewerLoading(false));
 			} else {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + title + '&prop=text|links', function (err, content) {
-					if (err) {
-						alert(err);
+					if (content.error) {
+						alert('It looks like the page you click doesn\'t exist. Try a different page.');
+						dispatch(gameBoardFilter(''));
+						dispatch(gameBoardLoading(false));
+						dispatch(viewerLoading(false));	
 						return false;
 					}
+	
+					let text = content.parse.text['*'];
 					let links = content.parse.links;
 					let newLinks = cleanLinks(links);
-					let text = content.parse.text['*'];
-
 					text = cleanText(text);
 					dispatch(addBreadcrumb(title));
 					dispatch(viewer(title, text));
 					dispatch(currentPage(title, newLinks));
 					dispatch(gameBoardFilter(''));
 					dispatch(gameBoardLoading(false));
-					dispatch(viewerLoading(false));
+					dispatch(viewerLoading(false));	
+				
+					
 				});
 			}
 		}
