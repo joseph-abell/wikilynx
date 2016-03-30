@@ -1,8 +1,8 @@
 import { connect } from 'react-redux';
 import Breadcrumbs from '../Components/Breadcrumbs';
 import { 
-	dispatchResetGame, 
-	dispatchRetryGame 
+	resetGame, 
+	retryGame 
 } from '../Utils';
 
 const mapStateToProps = (state) => {
@@ -18,10 +18,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onRandomGameClick: () => {
-			dispatchResetGame(dispatch);
+			resetGame(dispatch);
 		},
 		onRetryGameClick: (firstPage, lastPage) => {
-			dispatchRetryGame(dispatch, firstPage, lastPage);
+			retryGame(dispatch, firstPage, lastPage);
 		}
 	};
 };

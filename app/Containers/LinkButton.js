@@ -45,18 +45,18 @@ const mapDispatchToProps = (dispatch) => {
 						return false;
 					}
 	
-					const links = content.parse.links;
-					const newLinks = cleanLinks(links);
-					
-					const text = content.parse.text['*'];
-					const newText = cleanText(text);
-
+					let text = content.parse.text['*'];
+					let links = content.parse.links;
+					let newLinks = cleanLinks(links);
+					text = cleanText(text);
 					dispatch(addBreadcrumb(title));
-					dispatch(viewer(title, newText));
+					dispatch(viewer(title, text));
 					dispatch(currentPage(title, newLinks));
 					dispatch(gameBoardFilter(''));
 					dispatch(gameBoardLoading(false));
 					dispatch(viewerLoading(false));	
+				
+					
 				});
 			}
 		}
