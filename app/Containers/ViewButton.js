@@ -5,6 +5,7 @@ import {
 	viewer, 
 	viewerLoading 
 } from '../Actions';
+
 import { cleanText } from '../Utils';
 
 const mapStateToProps = (state) => {

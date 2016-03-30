@@ -55,12 +55,13 @@ const mapDispatchToProps = (dispatch) => {
 					alert(err);
 					return false;	
 				}
-				let links = content.parse.links;
-				let newLinks = cleanLinks(links);
-				let text = content.parse.text['*'];
+				const links = content.parse.links;
+				const newLinks = cleanLinks(links);
 
-				text = cleanText(text);
-				dispatch(viewer(title, text));
+				const text = content.parse.text['*'];
+				const newText = cleanText(text);
+
+				dispatch(viewer(title, newText));
 				dispatch(currentPage(title, newLinks));
 				dispatch(gameBoardFilter(''));
 				dispatch(gameBoardLoading(false));

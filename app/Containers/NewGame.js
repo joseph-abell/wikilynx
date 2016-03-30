@@ -1,26 +1,9 @@
 import jsonp from 'jsonp';
 import { connect } from 'react-redux';
 import NewGame from '../Components/NewGame.js';
-import { 
-	addBreadcrumb,
-	resetBreadcrumb, 
-	completeGame, 
-	currentPage,
-	customGame,
-	firstPage, 
-	gameBoardLoading, 
-	lastPage, 
-	newGame,
-	newGameLoading,
-	viewer, 
-	viewerLoading
-} from '../Actions';
+import { customGame } from '../Actions';
 
-import { 
-	cleanText, 
-	cleanLinks, 
-	dispatchNewGame,
-	setupNewGame,
+import {
 	setupRandomGame
 } from '../Utils';
 

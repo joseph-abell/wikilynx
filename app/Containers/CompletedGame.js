@@ -5,8 +5,8 @@ import CompletedGame from '../Components/CompletedGame';
 import { 
 	cleanLinks, 
 	cleanText, 
-	resetGame, 
-	retryGame 
+	dispatchResetGame, 
+	dispatchRetryGame 
 } from '../Utils';
 
 const mapStateToProps = (state) => {
@@ -21,10 +21,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
 	return {
 		onRetryClick: (firstTitle, lastTitle) => {
-			retryGame(dispatch, firstTitle, lastTitle);
+			dispatchRetryGame(dispatch, firstTitle, lastTitle);
 		},
 		onResetClick: () => {
-			resetGame(dispatch);
+			dispatchResetGame(dispatch);
 		}
 	};
 };

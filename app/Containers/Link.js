@@ -36,13 +36,14 @@ const mapDispatchToProps = (dispatch) => {
 				dispatch(viewerLoading(false));
 			} else {
 				jsonp('https://en.wikipedia.org/w/api.php?format=json&action=parse&page=' + title + '&prop=text|links', function (err, content) {
-					let links = content.parse.links;
-					let newLinks = cleanLinks(links);
-					let text = content.parse.text['*'];
+					const links = content.parse.links;
+					const newLinks = cleanLinks(links);
 
-					text = cleanText(text);
+					const text = content.parse.text['*'];
+					const newText = cleanText(text);
+					
 					dispatch(addBreadcrumb(title));
-					dispatch(viewer(title, text));
+					dispatch(viewer(title, newText));
 					dispatch(currentPage(title, newLinks));
 					dispatch(gameBoardLoading(false));
 					dispatch(viewerLoading(false));
