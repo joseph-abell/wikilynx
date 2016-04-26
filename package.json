@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Get from one wiki page to another in the fewest steps",
   "scripts": {
-    "start": "webpack -w",
-    "test": "mocha './test/**/*.js' --compilers js:babel-core/register"
+    "start": "webpack-dev-server",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
